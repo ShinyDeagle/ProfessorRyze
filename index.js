@@ -266,13 +266,13 @@ bot.on("message", function(message)
 													console.error('Error: ', err);
 												});
 										}
-										var endString = "";
+										var endString = " ";
 
 										Object.keys(res.files).forEach(function(id) {
 												var name = res.files[id]['name'];
 												endString.concat(`${name.replace(".java","")}\n`)
 										})
-										
+
 										var embed = new Discord.RichEmbed()
 											.setTitle(`All Instant Spells`)
 											.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
@@ -290,7 +290,7 @@ bot.on("message", function(message)
 													console.error('Error: ', err);
 												});
 										}
-										var endString = "";
+										var endString = " ";
 
 										Object.keys(res.files).forEach(function(id) {
 												var name = res.files[id]['name'];
@@ -313,7 +313,7 @@ bot.on("message", function(message)
 													console.error('Error: ', err);
 												});
 										}
-										var endString = "";
+										var endString = " ";
 
 										Object.keys(res.files).forEach(function(id) {
 												var name = res.files[id]['name'];
@@ -336,7 +336,7 @@ bot.on("message", function(message)
 													console.error('Error: ', err);
 												});
 										}
-										var endString = "";
+										var endString = " ";
 
 										Object.keys(res.files).forEach(function(id) {
 												var name = res.files[id]['name'];
@@ -359,7 +359,7 @@ bot.on("message", function(message)
 														console.error('Error: ', err);
 													});
 											}
-											var endString = "";
+											var endString = " ";
 
 											Object.keys(res.files).forEach(function(id) {
 													var name = res.files[id]['name'];
@@ -382,7 +382,7 @@ bot.on("message", function(message)
 														console.error('Error: ', err);
 													});
 											}
-											var endString = "";
+											var endString = " ";
 
 											Object.keys(res.files).forEach(function(id) {
 													var name = res.files[id]['name'];
