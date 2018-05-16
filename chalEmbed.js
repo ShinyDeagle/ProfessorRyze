@@ -22,8 +22,7 @@ modules.export = {
 			.addField(`Rules`,`${challengerules}`, true)
 			.addField(`Upload Guide`,`1. Open a private direct message chat with the Professor Ryze bot\n2. Make sure the file you are uploading is in the format, spells-filename.yml, if not you will be disqualified.\n3. Drag and Drop your file onto the chat channel\n4.Inside the comment, put ~submit spell [name of the challenge], if you do not you will be disqualified.\n5. You can send multiple versions and the most recent one will be judged when the time is over.`, true)
 		if (inchallengebuilder == true && challengebuilderid == message.author.id) {
-			switch (args[1].toLowerCase())
-				{
+			switch (args[1].toLowerCase()) {
 					default:
 						message.channel.send("Invalid Command. Use ~proj help to view available commands.")
 						message.react(emojiDB.react("cross"));

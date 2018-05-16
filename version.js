@@ -5,7 +5,7 @@ var bot = new Discord.Client()
 modules.export = {
 	parseVersion: (bot, message, args) => {
 		if (!args[1])
-			return message.reply("Can you actually provide a legit version string to parse?")
+		return message.reply("Can you actually provide a legit version string to parse?")
 
 		var string = args[1]
 		var prefixEnd = string.indexOf("-dev-");

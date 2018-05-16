@@ -103,6 +103,7 @@ modules.export = {
 	},
 	fetchAll: (bot, message, args) => {
 		//Currently no testing has been done on this.
+		//This feature is 100% broken rn.
 		switch (args[1].toLowerCase())
 			{
 				case "guide":
