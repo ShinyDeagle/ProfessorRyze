@@ -4,9 +4,9 @@ const Discord = require('discord.js');
 var bot = new Discord.Client()
 var validAdmins = [164733971316342784, 112742095978008576, 71448444065021952, 255207721001811968, 192884388747280384, 152242536381939713]
 
-modules.export = {
+module.exports= {
 	//All admin commands. Will give a detailed guide later.
-	admin: (bot, message, args) => {
+	admin: (client, message, args) => {
 		if (validAdmins.contains(message.author.id)) {
 				if (args[1].toLowerCase() == "talk") {
 					var array = [];
@@ -15,7 +15,7 @@ modules.export = {
 					array.shift();
 					array.shift();
 					array.shift();
-					bot.channels.get(channel).send(array.join(" "));
+					client.channels.get(channel).send(array.join(" "));
 				}
 				if (args[1].toLowerCase() == "fake") {
 					if (!args[2])
@@ -31,7 +31,7 @@ modules.export = {
 									.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
 									.setDescription("Let's get you well intergrated with the community. Here is a basic rundown.")
 									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
-									.addField("Commands","?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands\n ⤷ Alternatively, you can mention the bot.")
+									.addField("Commands","?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands\n ⤷ Alternatively, you can mention the client.")
 									.addField("Rules","View the discord rules on the #welcome channel\n\nWhen using the support channels, there are some special terms you'll need to get acquainted with.\n\nRead them by using ~rules support.\nTo gain access to the support channels, you must **?acceptrules** the rules.")
 								message.author.send(embed);
 								break;
@@ -56,14 +56,14 @@ modules.export = {
 							case "ye":
 							case "go":
 							case "approve":
-								bot.channels.get("398259282899894272").send(messagecontent)
+								client.channels.get("398259282899894272").send(messagecontent)
 
 								var issuecount = issueData.count;
 
 								Object.keys(issueData.users).forEach(function(user)
 								{
 									if (issueData.users[user].issues.includes(issuecount)) {
-										var found = bot.users.find(val => val.id == user)
+										var found = client.users.find(val => val.id == user)
 
 										found.send("Your bug report was approved!")
 										}
@@ -81,7 +81,7 @@ modules.export = {
 								Object.keys(issueData.users).forEach(function(user)
 								{
 									if (issueData.users[user].issues.includes(issuecount)) {
-										var found = bot.users.find(val => val.id == user)
+										var found = client.users.find(val => val.id == user)
 
 										found.send("Your bug report was declined!")
 										}
@@ -112,7 +112,7 @@ modules.export = {
 							message.reply(`Your code looks ugly when you don't use proper markdown. I sent you a link to the page.`)
 							message.channel.send("Here, I make it better. I even added colors too!")
 							message.author.send(`https://support.discordapp.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-`)
-							bot.channels.get(channel).send(`${start}${message.content}${end}`)
+							client.channels.get(channel).send(`${start}${message.content}${end}`)
 						})
 				}
 				if (args[1].toLowerCase() == "paste" && args[2] != "" && args[3] != "") {
@@ -122,7 +122,7 @@ modules.export = {
 					message.channel.fetchMessage(messageid)
 						.then(message =>
 						{
-							bot.channels.get(targetchannel).send(message.content)
+							client.channels.get(targetchannel).send(message.content)
 						})
 						.catch(console.error);
 				}
@@ -158,11 +158,12 @@ modules.export = {
 						.addField("Preview Embed", "~chal preview", true)
 						.addField("Confirm Embed", "~chal confirm", true)
 					message.channel.send(embed);
-					bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " started the project builder system.")
+					client.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " started the project builder system.")
 				}
 			}
 		else {
 			message.channel.send("Sorry, but thats an admin-only cmd.")
-			bot.channels.get("392391057490444291").send(`${message.author.username} tried to use an admin command.`)
+			client.channels.get("392391057490444291").send(`${message.author.username} tried to use an admin command.`)
 		}
 	}
+}

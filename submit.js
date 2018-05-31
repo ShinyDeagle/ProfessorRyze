@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 
 var bot = new Discord.Client()
 
-modules.export = {
-	submit: (bot, message, args) => {
+module.exports= {
+	submit: (client, message, args) => {
 		switch (args[1].toLowerCase()) {
 			case "spell":
 				if (args[2] != "") reason = message.content.slice(13);
@@ -32,11 +32,11 @@ modules.export = {
 							else
 								{
 									message.channel.send("Spell File Sent!")
-									bot.channels.get("392961616833937408").send(`${username}/${id} sent a spell file with a reason which is: ${reason}.`)
+									client.channels.get("392961616833937408").send(`${username}/${id} sent a spell file with a reason which is: ${reason}.`)
 									message.channel.fetchMessage(message.id)
 									.then(message =>
 										{
-											bot.channels.get("392961616833937408").send(link)
+											client.channels.get("392961616833937408").send(link)
 										})
 								}
 						})

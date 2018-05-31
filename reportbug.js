@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 
 var bot = new Discord.Client()
 
-modules.export = {
-	reportBug: (bot, message, args) => {
+module.exports= {
+	reportBug: (client, message, args) => {
 		//Embed
 		var templevel = "Empty"
 		var bugembed = new Discord.RichEmbed()
@@ -118,7 +118,7 @@ modules.export = {
 					var issuecount = issueData.count;
 					issueData.users[message.author.id].issues.push(issuecount);
 
-					bot.channels.get("410434459050049548").send(bugembed)
+					client.channels.get("410434459050049548").send(bugembed)
 					message.author.send("Sent! Will go through approval and you will be notified on its status.")
 
 					message.react(emojiDB.react("tick"))
@@ -154,14 +154,14 @@ modules.export = {
 					if (exists == true) break;
 
 					message.reply(' as we do have the channel #known-issues for admin acknowledged bugs, all of these bug reports come from the community. ``~reportbug`` sends us a message and your description of a bug and, if we are able to replicate it, this bug will be sent to the #known-issues channel.\n\n__We also want to make it aware__ that misuse of this command is not tolerated. If you use this command as a joke or anything besides the intended purpose, you will be punished **heavily**\n\nTo report a bug, use ~reportbug start to get walked through an interactive process to ensure that all details of the bug are captured.')
-					/*\n\nAlternatively you can use ``~reportbug {Bug Level} {MS version} {Exact Server Version} {Description}`` to quickly post the bug issue. These commands must be used in a private DM with the bot.*/
+					/*\n\nAlternatively you can use ``~reportbug {Bug Level} {MS version} {Exact Server Version} {Description}`` to quickly post the bug issue. These commands must be used in a private DM with the client.*/
 					break;
 
 				case "start":
 					message.react(emojiDB.react("tick"))
 					message.author.send("Bug Reporting Process Initiated")
-					message.author.send("From now on, you must continue to privately direct message the bot. You can use ~reportbug or ~rb to proceed with the interactive process.")
-					bot.channels.get("392391057490444291").send(`${message.author.username}/${message.author.id} wants to report a bug.`)
+					message.author.send("From now on, you must continue to privately direct message the client. You can use ~reportbug or ~rb to proceed with the interactive process.")
+					client.channels.get("392391057490444291").send(`${message.author.username}/${message.author.id} wants to report a bug.`)
 					bugbuilder.push(message.author.id)
 					var embed = new Discord.RichEmbed()
 						.setTitle("Bug Reporting System Help Commands")

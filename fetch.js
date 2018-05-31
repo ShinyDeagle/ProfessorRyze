@@ -4,15 +4,17 @@ const Discord = require('discord.js');
 var bot = new Discord.Client()
 //Fetch.js makes use of the readdirp module. If you want to know how this works. You'll need to check the module page.
 
-modules.export = {
-	validate: (bot, message, args) => {
-		if (!args[1])
-			return message.reply("I need some criteria in the form of a name!")
+module.exports= {
+	validate: (client, message, args) => {
+		if (!args[1]) {
+			message.reply("I need some criteria in the form of a name!");
+			return false;
+		}
 
 		var hasAnyRole = false;
 		var banned = false;
 		var notguildmessage = false;
-		var msguild = bot.guilds.get("335237931633606656")
+		var msguild = client.guilds.get("335237931633606656")
 
 		msguild.roles.forEach(function(role)
 		{
@@ -50,7 +52,7 @@ modules.export = {
 		}
 		return true;
 	},
-	fetchKeyword: (bot, message, args) => {
+	fetchKeyword: (client, message, args) => {
 		switch (args[1].toLowerCase())
 			{
 				case "guide":
@@ -101,7 +103,7 @@ modules.export = {
 					break;
 			}
 	},
-	fetchAll: (bot, message, args) => {
+	fetchAll: (client, message, args) => {
 		//Currently no testing has been done on this.
 		//This feature is 100% broken rn.
 		switch (args[1].toLowerCase())
@@ -259,6 +261,5 @@ modules.export = {
 				default:
 					return message.reply("Must choose one of these parameters to fetch.\n\ninstant\ntargeted\nbuff\ncommand\npassive\nmodifier")
 			}
-			break;
 	}
 }

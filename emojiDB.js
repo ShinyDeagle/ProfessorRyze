@@ -1,6 +1,6 @@
-modules.export = {
+module.exports= {
 	//emoji will be the string you are looking for.
-	react = (emoji) => {
+	react: (emoji) => {
 		//The most used emoji have ailases that allow me to refer to them easily.
 		//Two x's will mean that is an invalid emoji in the database
 		switch (emoji) {

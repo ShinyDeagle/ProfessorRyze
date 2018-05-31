@@ -2,16 +2,24 @@ const Discord = require('discord.js');
 
 var bot = new Discord.Client()
 
-modules.export = {
-	parseVersion: (bot, message, args) => {
-		if (!args[1])
-		return message.reply("Can you actually provide a legit version string to parse?")
+module.exports= {
+	parseVersion: (client, message, args) => {
+		if (!args[1]) {
+			message.reply("Can you actually provide a legit version string to parse?");
+			return;
+		}
 
 		var string = args[1]
 		var prefixEnd = string.indexOf("-dev-");
-		if (prefixEnd == -1) return message.reply("Make sure to include everything. For example, 2.9-dev-[datepattern]")
+		if (prefixEnd == -1) {
+			message.reply("Make sure to include everything. For example, 2.9-dev-[datepattern]");
+			return;
+		}
 		var version = string.slice(0,prefixEnd);
-		if (version == "") return message.reply("Specify every part of the build's version. For example, 2.9-dev-[datepattern]")
+		if (version == "") {
+			message.reply("Specify every part of the build's version. For example, 2.9-dev-[datepattern]");
+			return;
+		}
 		var format = string.slice(prefixEnd + "-dev-".length);
 		console.log(`${string}`);
 		console.log(prefixEnd);
@@ -19,7 +27,10 @@ modules.export = {
 		console.log(format);
 
 		//Parse the format
-		if (format.length != 10) return message.reply("Invalid date-pattern was detected!")
+		if (format.length != 10) {
+			message.reply("Invalid date-pattern was detected!");
+			return;
+		}
 
 		var year = format.slice(0,2);
 		var month = format.slice(2,4).replace("0","");
@@ -38,5 +49,5 @@ modules.export = {
 		var monthArray = ["January","Febuary","March","April","May","June","July","August","September","October","Novemeber","December"]
 
 		message.channel.send(`This build of MagicSpells is version ${version} and was built at ${hour}:${minute} on the ${day}${daySuffix} of ${monthArray[parseInt(month) - 1]}, 20${year}.`)
-	}
+	},
 }

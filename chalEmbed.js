@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 
 var bot = new Discord.Client()
 
-modules.export = {
+module.exports= {
 
-	chalBuilder: (bot, message, args) => {
+	chalBuilder: (client, message, args) => {
 		//Challenge Embed
 		var chalembed = new Discord.RichEmbed()
 			.setTitle(`A MagicSpells Hosted Spell-File Challenge`)
@@ -48,7 +48,7 @@ modules.export = {
 						inchallengebuilder = false;
 						break;
 					case "confirm":
-						bot.channels.get("346881478094749697").send(chalembed);
+						client.channels.get("346881478094749697").send(chalembed);
 						message.channel.send("Embed Created and Posted. You are free to resend the embed again after changing certain information.")
 						break;
 					case "help":
@@ -96,6 +96,7 @@ modules.export = {
 				}
 		} else {
 			message.channel.send("Error: Invalid User or System is being used.")
-			message.react(emojiDB.react("cross");
+			message.react(emojiDB.react("cross"));
 		}
+}
 }
