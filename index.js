@@ -61,6 +61,7 @@ console.log("HP, Check. Mana, Check. Ready To Go.")
 bot.on("ready", function()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   bot.user.setUsername("Professor Ryze")
 
   var valid = ["335237931633606656","383216614851739658","369109149809770497"]
@@ -399,6 +400,8 @@ bot.on("message", function(message)
 })
 bot.login(config.token);
 =======
+=======
+>>>>>>> 2ae527610a0f2c724e1abc028f7d70ed71ee8b90
 	bot.user.setUsername("Professor Ryze")
 	
 	var valid = ["335237931633606656","383216614851739658","369109149809770497"]
@@ -734,4 +737,7 @@ bot.login(config.token);
 				});
 			})
 			bot.login(config.token);
+<<<<<<< HEAD
+>>>>>>> 2ae527610a0f2c724e1abc028f7d70ed71ee8b90
+=======
 >>>>>>> 2ae527610a0f2c724e1abc028f7d70ed71ee8b90
