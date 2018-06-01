@@ -1,5 +1,6 @@
 const emojiDB = require("./emojiDB.js");
 const Discord = require('discord.js');
+const readdirp = require('readdirp');
 
 var bot = new Discord.Client()
 //Fetch.js makes use of the readdirp module. If you want to know how this works. You'll need to check the module page.
@@ -10,6 +11,8 @@ module.exports= {
 			message.reply("I need some criteria in the form of a name!");
 			return false;
 		}
+
+		if (message.guild.id == 383216614851739658) return true;
 
 		var hasAnyRole = false;
 		var banned = false;
@@ -61,8 +64,8 @@ module.exports= {
 						.addField("KeyWords","If you are looking for... Use this keyword after the filename\nModifiers - [FileName]Condition\nSpells - [FileName]Spell\nPassive Triggers - [FileName]Listener")
 						.addField("Example","I am looking for a modifier, I'll type [condition] after the name of the modifier.")
 						.setAuthor(`Created with Professor Ryze's Bug System`)
-						.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-						.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+						.setThumbnail(message.author.avatarURL)
+						.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 						.setTimestamp()
 					message.channel.send(embed);
 					break;
@@ -77,8 +80,8 @@ module.exports= {
 
 							var embed = new Discord.RichEmbed()
 								.setTitle(`File Links Found`)
-								.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+								.setThumbnail(message.author.avatarURL)
+								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
 
 							Object.keys(res.files).forEach(function(id) {
@@ -114,8 +117,8 @@ module.exports= {
 						.addField("KeyWords","This is ment to bring a list of all available modifiers, spells and so on. Add a keyword after ~fetchall [keyword] to use it.\nAvailable Keywords are \ninstant, targeted, buff, command, passive, modifier")
 						.addField("Example","I am looking for all modifiers, I'll type ~fetchall modifier")
 						.setAuthor(`Created with Professor Ryze's Fetch System`)
-						.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-						.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+						.setThumbnail(message.author.avatarURL)
+						.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 						.setTimestamp()
 					message.channel.send(embed);
 					break;
@@ -126,19 +129,29 @@ module.exports= {
 										console.error('Error: ', err);
 									});
 							}
-							var endString = " ";
+							var array = [];
+							var sizeOfField = 10;
 
 							Object.keys(res.files).forEach(function(id) {
 									var name = res.files[id]['name'];
-									endString.concat(`${name.replace(".java","")}\n`)
+									array.push(`${name.replace(".java","")}`);
 							})
 
+							var totalFields = Math.ceil(array.length / sizeOfField);
+
 							var embed = new Discord.RichEmbed()
-								.setTitle(`All Instant Spells`)
-								.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+								.setTitle("All Instant Spells")
+								.setThumbnail(message.author.avatarURL)
+								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
-								.addField("Spells",endString)
+								for (i = 0; i < totalFields; i++) {
+									var tempArray = [];
+									for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+										tempArray.push(array[j]);
+									}
+									embed.addField(`Set ${i}`, tempArray, true);
+								}
+								embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
 							message.channel.send(embed);
 							message.react(emojiDB.react("tick"))
 					});
@@ -150,18 +163,29 @@ module.exports= {
 										console.error('Error: ', err);
 									});
 							}
-							var endString = " ";
+							var array = [];
+							var sizeOfField = 10;
 
 							Object.keys(res.files).forEach(function(id) {
 									var name = res.files[id]['name'];
-									endString.concat(`${name.replace(".java","")}\n`)
+									array.push(`${name.replace(".java","")}`);
 							})
+
+							var totalFields = Math.ceil(array.length / sizeOfField);
+
 							var embed = new Discord.RichEmbed()
-								.setTitle(`All Targeted Spells`)
-								.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+								.setTitle("All Targeted Spells")
+								.setThumbnail(message.author.avatarURL)
+								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
-								.addField("Spells",endString)
+								for (i = 0; i < totalFields; i++) {
+									var tempArray = [];
+									for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+										tempArray.push(array[j]);
+									}
+									embed.addField(`Set ${i}`, tempArray, true);
+								}
+								embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
 							message.channel.send(embed);
 							message.react(emojiDB.react("tick"))
 					});
@@ -173,18 +197,29 @@ module.exports= {
 										console.error('Error: ', err);
 									});
 							}
-							var endString = " ";
+							var array = [];
+							var sizeOfField = 10;
 
 							Object.keys(res.files).forEach(function(id) {
 									var name = res.files[id]['name'];
-									endString.concat(`${name.replace(".java","")}\n`)
+									array.push(`${name.replace(".java","")}`);
 							})
+
+							var totalFields = Math.ceil(array.length / sizeOfField);
+
 							var embed = new Discord.RichEmbed()
-								.setTitle(`All Buff Spells`)
-								.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+								.setTitle("All Buff Spells")
+								.setThumbnail(message.author.avatarURL)
+								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
-								.addField("Spells",endString)
+								for (i = 0; i < totalFields; i++) {
+									var tempArray = [];
+									for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+										tempArray.push(array[j]);
+									}
+									embed.addField(`Set ${i}`, tempArray, true);
+								}
+								embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
 							message.channel.send(embed);
 							message.react(emojiDB.react("tick"))
 					});
@@ -196,18 +231,29 @@ module.exports= {
 										console.error('Error: ', err);
 									});
 							}
-							var endString = " ";
+							var array = [];
+							var sizeOfField = 10;
 
 							Object.keys(res.files).forEach(function(id) {
 									var name = res.files[id]['name'];
-									endString.concat(`${name.replace(".java","")}\n`)
+									array.push(`${name.replace(".java","")}`);
 							})
+
+							var totalFields = Math.ceil(array.length / sizeOfField);
+
 							var embed = new Discord.RichEmbed()
-								.setTitle(`All Command Spells`)
-								.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+								.setTitle("All Command Spells")
+								.setThumbnail(message.author.avatarURL)
+								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
-								.addField("Spells",endString)
+								for (i = 0; i < totalFields; i++) {
+									var tempArray = [];
+									for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+										tempArray.push(array[j]);
+									}
+									embed.addField(`Set ${i}`, tempArray, true);
+								}
+								embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
 							message.channel.send(embed);
 							message.react(emojiDB.react("tick"))
 					});
@@ -219,18 +265,29 @@ module.exports= {
 											console.error('Error: ', err);
 										});
 								}
-								var endString = " ";
+								var array = [];
+								var sizeOfField = 10;
 
 								Object.keys(res.files).forEach(function(id) {
 										var name = res.files[id]['name'];
-										endString.concat(`${name.replace(".java","")}\n`)
+										array.push(`${name.replace(".java","")}`);
 								})
+
+								var totalFields = Math.ceil(array.length / sizeOfField);
+
 								var embed = new Discord.RichEmbed()
-									.setTitle(`All Passive Triggers`)
-									.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+									.setTitle("All Passive Listeners")
+									.setThumbnail(message.author.avatarURL)
+									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 									.setTimestamp()
-									.addField("Spells",endString)
+									for (i = 0; i < totalFields; i++) {
+										var tempArray = [];
+										for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+											tempArray.push(array[j]);
+										}
+										embed.addField(`Set ${i}`, tempArray, true);
+									}
+									embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
 								message.channel.send(embed);
 								message.react(emojiDB.react("tick"))
 						});
@@ -242,18 +299,29 @@ module.exports= {
 											console.error('Error: ', err);
 										});
 								}
-								var endString = " ";
+								var array = [];
+								var sizeOfField = 10;
 
 								Object.keys(res.files).forEach(function(id) {
 										var name = res.files[id]['name'];
-										endString.concat(`${name.replace(".java","")}\n`)
+										array.push(`${name.replace("Condition","")}`);
 								})
+
+								var totalFields = Math.ceil(array.length / sizeOfField);
+
 								var embed = new Discord.RichEmbed()
-									.setTitle(`All Modifier Conditions`)
-									.setThumbnail("https://i.imgur.com/vzbca9G.jpg")
-									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/vzbca9G.jpg")
+									.setTitle("All Modifier Conditions")
+									.setThumbnail(message.author.avatarURL)
+									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 									.setTimestamp()
-									.addField("Spells",endString)
+									for (i = 0; i < totalFields; i++) {
+										var tempArray = [];
+										for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+											tempArray.push(array[j]);
+										}
+										embed.addField(`Set ${i}`, tempArray, true);
+									}
+									embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
 								message.channel.send(embed);
 								message.react(emojiDB.react("tick"))
 						});
