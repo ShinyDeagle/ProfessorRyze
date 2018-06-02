@@ -304,7 +304,7 @@ module.exports= {
 
 								Object.keys(res.files).forEach(function(id) {
 										var name = res.files[id]['name'];
-										array.push(`${name.replace("Condition","")}`);
+										array.push(`${name.replace(".java","")}`);
 								})
 
 								var totalFields = Math.ceil(array.length / sizeOfField);

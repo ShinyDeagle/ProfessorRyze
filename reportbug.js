@@ -1,7 +1,10 @@
 const emojiDB = require("./emojiDB.js");
 const Discord = require('discord.js');
+const fs = require('fs');
 
 var bot = new Discord.Client()
+
+let bugData = JSON.parse(fs.readFileSync('./bugData.json', 'utf8'));
 
 module.exports= {
 	reportBug: (client, message, args) => {
@@ -204,5 +207,8 @@ module.exports= {
 
 					if (exists == false) message.author.send("You weren't using the bug reporting system to begin with.");
 			}
+			fs.writeFile("./bugData.json", JSON.stringify(bugData), (err) => {
+				if (err) console.error(err)
+			});
 		}
 	}

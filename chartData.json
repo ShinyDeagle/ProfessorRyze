@@ -1,0 +1,29 @@
+{
+  "currentdate": "Sat Jun 02 2018",
+  "dates": {
+    "Sat May 26 2018": {
+      "users": 380
+    },
+    "Sun May 27 2018": {
+      "users": 381
+    },
+    "Mon May 28 2018": {
+      "users": 386
+    },
+    "Tue May 29 2018": {
+      "users": 389
+    },
+    "Wed May 30 2018": {
+      "users": 390
+    },
+    "Thu May 31 2018": {
+      "users": 393
+    },
+    "Fri Jun 01 2018": {
+      "users": 391
+    },
+    "Sat Jun 02 2018": {
+      "users": 390
+    }
+  }
+}
