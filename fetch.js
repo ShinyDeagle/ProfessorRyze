@@ -107,8 +107,7 @@ module.exports= {
 			}
 	},
 	fetchAll: (client, message, args) => {
-		//Currently no testing has been done on this.
-		//This feature is 100% broken rn.
+		//Perfectly Funtioning
 		switch (args[1].toLowerCase())
 			{
 				case "guide":

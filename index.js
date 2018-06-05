@@ -12,7 +12,6 @@ const readdirp = require('readdirp');
 const versionJS = require("./version.js");
 const fetchJS = require("./fetch.js");
 const emojiDB = require("./emojiDB.js");
-const reportBugJS = require("./reportbug.js");
 const submitJS = require("./submit.js");
 const challengeJS = require("./chalEmbed.js");
 const adminJS = require("./admin.js");
@@ -97,7 +96,7 @@ bot.on("guildMemberAdd", member =>
 	.setThumbnail("https://i.imgur.com/zEOYDNJ.png")
 	.setDescription("Here is a basic rundown")
 	.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
-	.addField("Commands","?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands\n ⤷ Alternatively, you can mention the bot.")
+	.addField("Commands","?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands\n **⤷** Alternatively, you can mention the bot.")
 	.addField("Rules","View the discord rules on the #welcome channel\n\nWhen using the support channels, there are some special terms you'll need to get acquainted with.\n\nRead them by using ~rules support.\nTo gain access to the support channels, you must **?acceptrules** the rules.")
 	member.send(embed);
 
@@ -128,6 +127,8 @@ bot.on("guildDelete", guild =>
 
 bot.on("message", function(message)
 {
+  chartJS.uploadGuildData();
+	updateGuildCount();
 
 	function ResetEmbedChallenge()
 	{
@@ -177,8 +178,8 @@ bot.on("message", function(message)
 
 		switch (args[0].toLowerCase())
 		{
-			case "weekchart":
-			chartJS.createWeekChart(bot, message, args);
+			case "chart":
+			chartJS.createChart(bot, message, args);
 			break;
 			case "version":
 			versionJS.parseVersion(bot, message, args);
@@ -193,9 +194,6 @@ bot.on("message", function(message)
 			if (!valid) return;
 			else fetchJS.fetchKeyword(bot, message, args);
 			break;
-			case "rb":
-			case "reportbug":
-			reportBugJS.reportBug(bot, message, args);
 			break;
 			case "submit":
 			submitJS.submit(bot, message, args);
@@ -228,11 +226,12 @@ bot.on("message", function(message)
 			.setThumbnail("https://i.imgur.com/zEOYDNJ.png")
 			.setDescription("Here is a list of available commands. **Base Commands** don't do anything on their own. You need to add a secondary argument to use it.")
 			.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
-			.addField("\🔗 Links", "~list | **Base Command**\n ⤷ ~list nisovin | Displays links from the MS nisovin page\n ⤷ ~list github | Displays links from the MS github page\n ⤷ ~list tutorial | Lunks to various tutorials for MS users\n~invite | **Base Command**\n ⤷ ~invite bot | Bot's Invite Link\n ⤷ ~invite msdiscord | **Official MagicSpells Discord** Link\n ⤷ ~invite botdiscord | Development and Help Center for the bot")
-			.addField("\↩️ Fetch File","~fetch | **Base Command**\n ⤷ ~fetch [filename] | Provides Direct Links to files from the Github Page.\n ⤷ ~fetchall [category] | Brings up the names of all files in that category\n**Example: instant, targeted.**\n**~fetch and ~fetchall only retrieve .java files**")
-			.addField("\📚 Rules","~rules | **Base Command**\n ⤷ ~rules support | Lists the rules for the usage of support channels.")
-			.addField(":beetle: Sumbit a Bug Report","~reportbug | **Base Command**\n ⤷ ~reportbug start | Starts the bug report builder\n ⤷ ~reportbug help | Displays an important message related to the reportbug command.")
-			.addField("\📋 Suggest Ideas or Fixes", "~suggest [message] | Sent to development discord.")
+			.addField("\🔗 Links", "~list | **Base Command**\n **⤷** ~list nisovin | Displays links from the MS nisovin page\n **⤷** ~list github | Displays links from the MS github page\n **⤷** ~list tutorial | Lunks to various tutorials for MS users\n~invite | **Base Command**\n **⤷** ~invite bot | Bot's Invite Link\n **⤷** ~invite msdiscord | **Official MagicSpells Discord** Link\n **⤷** ~invite botdiscord | Development and Help Center for the bot")
+			.addField("\↩️ Fetch File","~fetch | **Base Command**\n **⤷** ~fetch [filename] | Provides Direct Links to files from the Github Page.\n **⤷** ~fetchall [category] | Brings up the names of all files in that category\n**Example: instant, targeted.**\n**~fetch and ~fetchall only retrieve .java files**")
+			.addField("\📚 Rules","~rules | **Base Command**\n **⤷** ~rules support | Lists the rules for the usage of support channels.")
+			.addField(":beetle: Sumbit a Bug Report","~reportbug | **Base Command**\n **⤷** ~reportbug start | Starts the bug report builder\n **⤷** ~reportbug help | Displays an important message related to the reportbug command.")
+      .addField("\📋 View User Counts","~chart | **Base Command**\n **⤷** ~chart 1 week | Shows user count data over 1 week")
+      .addField("\📋 Suggest Ideas or Fixes", "~suggest [message] | Sent to development discord.")
 			message.channel.send(embed);
 			bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
 			break;
