@@ -56,6 +56,21 @@ module.exports= {
 		return true;
 	},
 	fetchKeyword: (client, message, args) => {
+		function compareAndScore(input, output) {
+			var inp = input.replace("spell","").replace(".java","").replace("condition","");
+			var out = output.replace("spell","").replace(".java","").replace("condition","");
+
+			var inputArray = inp.split("");
+			var outputArray = out.split("");
+
+			var threshold = 2;
+			var score = 0;
+			for (i = 0; i < out.length; i++) if (inputArray[i] == outputArray[i]) score++;
+			var percentage = score/out.length;
+
+			if (inp.length - threshold > out.length) return 0.0;
+			return percentage;
+		}
 		switch (args[1].toLowerCase())
 			{
 				case "guide":
@@ -78,6 +93,13 @@ module.exports= {
 							}
 							var datastring = "Empty";
 
+							var goodGuesses = 0;
+							var foundWord = false;
+							var guessName = [];
+							var guessPath = [];
+
+							var skipRest = false;
+
 							var embed = new Discord.RichEmbed()
 								.setTitle(`File Links Found`)
 								.setThumbnail(message.author.avatarURL)
@@ -89,19 +111,48 @@ module.exports= {
 									var path = res.files[id]['path'];
 									if (name.toLowerCase() == `${args[1].toLowerCase()}.java`) {
 										if (datastring == "Empty") datastring = "$|$";
-
+										foundWord = true;
 										embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${path}\n`)
+									} else {
+										var score = compareAndScore(`${args[1].toLowerCase()}.java`, name.toLowerCase());
+										if (score == 1) {
+											skipRest = true;
+											guessName = [];
+											guessPath = [];
+											guessName.push(name);
+											guessPath.push(path);
+										}
+										if (score >= 0.5 && skipRest != true) {
+											guessName.push(name);
+											guessPath.push(path);
+										}
 									}
 							})
 
+							if (foundWord == false) {
+								for (i = 0; i < guessName.length; i++) {
+									var name = guessName[i];
+									var path = guessPath[i];
+									embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${path}\n`);
+									goodGuesses++;
+								}
+							}
+
 							if (datastring == "Empty") {
-								message.react(emojiDB.react("cross"))
-								return message.channel.send("No Files Found!")
+								if (goodGuesses > 0) {
+									embed.setDescription("I couldn't get an exact match but here are some similar links")
+									embed.setTitle("Similar File Links Found")
+								}
+								else {
+									message.react(emojiDB.react("cross"))
+									return message.channel.send("No Files Found!")
+								}
 							}
 
 							datastring = datastring.replace("$|$","");
 							message.channel.send(embed);
-							message.react(emojiDB.react("tick"))
+							if (goodGuesses > 0) message.react(emojiDB.react("thinking"))
+							else message.react(emojiDB.react("tick"))
 					});
 					break;
 			}

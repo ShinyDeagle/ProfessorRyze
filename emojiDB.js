@@ -25,6 +25,10 @@ module.exports= {
 			case "thinking":
 				return "\🤔";
 
+			case "caution":
+			case "warning":
+				return "\🚨"
+
 			case "unamused":
 			case "pathetic":
 			case ":/":

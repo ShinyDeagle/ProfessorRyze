@@ -9,7 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "delay": "^2.0.0",
     "discord.js": "^11.2.1",
-    "discord.js-commando": "^0.9.0"
+    "discord.js-commando": "^0.9.0",
+    "download": "^6.2.5",
+    "dropbox": "^4.0.5",
+    "es6-promise": "^4.2.4",
+    "find-file": "^1.0.1",
+    "images-downloader": "^1.0.3",
+    "install": "^0.10.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jimp": "^0.2.28",
+    "random-int": "^1.0.0",
+    "validate-yaml": "^1.0.0"
   }
 }

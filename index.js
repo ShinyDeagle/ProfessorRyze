@@ -76,7 +76,7 @@ bot.on("ready", function() {
 
 	msguild.fetchMembers().then(g =>
 		{
-			bot.user.setActivity(`${g.members.size} MS Configers`,{type: 'WATCHING'})
+			bot.user.setActivity(`${g.members.size} MS Configers`,{type: 'LISTENING'})
 			memberSize = g.members.size;
 		})
 });
@@ -103,7 +103,7 @@ bot.on("guildMemberAdd", member =>
 	var msguild = bot.guilds.get("335237931633606656")
 
 	msguild.fetchMembers().then(g => {
-			bot.user.setActivity(`${g.members.size} MS Configers`,{type: 'WATCHING'})
+			bot.user.setActivity(`${g.members.size} MS Configers`,{type: 'LISTENING'})
 			memberSize = g.members.size;
 		})
 })
@@ -113,7 +113,7 @@ bot.on("guildMemberRemove", member =>
 var msguild = bot.guilds.get("335237931633606656")
 
 msguild.fetchMembers().then(g => {
-		bot.user.setActivity(`${g.members.size} MS Configers`,{type: 'WATCHING'})
+		bot.user.setActivity(`${g.members.size} MS Configers`,{type: 'LISTENING'})
 		memberSize = g.members.size;
 	})
 })
@@ -227,27 +227,12 @@ bot.on("message", function(message)
 			.setDescription("Here is a list of available commands. **Base Commands** don't do anything on their own. You need to add a secondary argument to use it.")
 			.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
 			.addField("\🔗 Links", "~list | **Base Command**\n **⤷** ~list nisovin | Displays links from the MS nisovin page\n **⤷** ~list github | Displays links from the MS github page\n **⤷** ~list tutorial | Lunks to various tutorials for MS users\n~invite | **Base Command**\n **⤷** ~invite bot | Bot's Invite Link\n **⤷** ~invite msdiscord | **Official MagicSpells Discord** Link\n **⤷** ~invite botdiscord | Development and Help Center for the bot")
-			.addField("\↩️ Fetch File","~fetch | **Base Command**\n **⤷** ~fetch [filename] | Provides Direct Links to files from the Github Page.\n **⤷** ~fetchall [category] | Brings up the names of all files in that category\n**Example: instant, targeted.**\n**~fetch and ~fetchall only retrieve .java files**")
-			.addField("\📚 Rules","~rules | **Base Command**\n **⤷** ~rules support | Lists the rules for the usage of support channels.")
-			.addField(":beetle: Sumbit a Bug Report","~reportbug | **Base Command**\n **⤷** ~reportbug start | Starts the bug report builder\n **⤷** ~reportbug help | Displays an important message related to the reportbug command.")
-      .addField("\📋 View User Counts","~chart | **Base Command**\n **⤷** ~chart 1 week | Shows user count data over 1 week")
-      .addField("\📋 Suggest Ideas or Fixes", "~suggest [message] | Sent to development discord.")
+			.addField("\↩️ Fetch File","~fetch | **Base Command**\n **⤷** ~fetch [filename] | fetches a link to the spell on the Github .\n **⤷** ~fetchall [category] | fetchs names of all files in that category\n**Example: instant, targeted.**\n**~fetch and ~fetchall only retrieve .java files**")
+      .addField("\📅 View User Counts","~chart | **Base Command**\n **⤷** ~chart [timescale] [date-range] \n **timescale**: day, week, month, year \n **date-range**: any interger number")
 			message.channel.send(embed);
 			bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
 			break;
 
-			case "suggest": //suggest commands
-			if (args[1].toLowerCase() != "") {
-				message.channel.send("Your suggestion was sent to the Professor Ryze Development Discord. Thank You!")
-				bot.channels.get("385498891744706571").send(message.author.username + "/" + message.author.id + " suggested " + suggestargs)
-				break;
-			}
-			if (args[1].toLowerCase() == "") {
-				message.channel.send("You need to add something after ~suggest if you want to suggest something.")
-				bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
-				break;
-			}
-			break;
 			case "invite":
 			switch(args[1].toLowerCase()) {
 				case "bot":
@@ -265,36 +250,6 @@ bot.on("message", function(message)
 				case "botdiscord":
 				message.channel.send("Contact the maintainer of the bot at the Professor Ryze Development Discord.")
 				message.channel.send("https://discord.gg/yvvbfuk")
-				bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
-				break;
-
-				default:
-				message.channel.send("Invalid Argument, use ~cmds for the correct syntax.")
-				bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked an invalid command which was " + message.content)
-				break;
-			}
-			break;
-			// troubleshoot command
-
-			case "troubleshoot":
-
-			switch (args[1].toLowerCase())
-			{
-				case "effects":
-				var embed = new Discord.RichEmbed()
-				.setTitle("Useful Links")
-				.setColor(092030)
-				.setAuthor("Professor Ryze - MagicSpells ~cmds bot")
-				.setThumbnail("https://i.imgur.com/zEOYDNJ.png")
-				.setDescription("For those who encounter problems when setting effects within MagicSpells.")
-				.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord. This bot was created to aid users of the MagicSpells Plugin for Minecraft 1.9 to 1.12.2", "https://i.imgur.com/zEOYDNJ.png")
-				.addField("Common Problems", "With reference to the spell effects page at http://nisovin.com/magicspells/spelleffects")
-				.addField("I can't see my effect!", "Make sure that all of the configuration options within the effect like ``position:``, ``effect:`` and ``particle-name:`` are spelled correctly, valid and where you want the effect to appear.")
-				.addField("I can't hear my sound effect!", "The sounds in the nisovin page are mostly outdated. The most up-to-date database for Minecraft 1.9+ sounds are on the official Minecraft page at https://minecraft.gamepedia.com/Sounds.json.")
-				.addField("I can't hear my custom sound effect!", "Sounds that may be defined through a resource pack of any kind have a sounds.json file that store all the sounds. Make sure that the name of the sound like ``custom.tazer`` are the same as the ones in the sounds.json file within the resource pack.")
-				.addField("I still can't see my effect!", "Make sure that each effect you list under the spell supports its position and have a name defined before the configuration options of the effect.")
-				.addField("Example", "```yml\neffects:\n  [name-of-effect-goes-here]:\n    position: caster\n    effect: hearts```")
-				message.channel.send(embed);
 				bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
 				break;
 

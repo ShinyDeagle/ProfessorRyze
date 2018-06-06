@@ -4,6 +4,8 @@ const chartJS = require('./chart.js');
 
 var bot = new Discord.Client()
 
+var establishedDate = "Fri Jul 14 2017";
+
 let chartData = JSON.parse(fs.readFileSync('./chartData.json', 'utf8'));
 
 var json = chartData;
@@ -44,43 +46,66 @@ function getDateStringBefore(dateString) {
 	return yesterday.toDateString();
 }
 
-function getDatesInRange(range) {
+function getDatesInRange(timescale, count) {
 
 	var dates = [];
 	var now = new Date();
 
-	switch (range) {
-		default:
-			break;
-
-		case "7D":
-			for (i = 0; i < 7; i++) {
+	switch (timescale) {
+		case "day":
+		case "days":
+		case "d":
+			for (i = 0; i < count; i++) {
 				if (i == 0) dates.push(now.toDateString());
-				else dates.push(getDateStringBefore(dates[i - 1]));
+				else {
+					var newDate = getDateStringBefore(dates[i - 1]);
+					if (newDate == establishedDate) break;
+					else dates.push(newDate);
+				}
 			}
 			break;
 
-		case "14D":
-			for (i = 0; i < 14; i++) {
+		case "week":
+		case "weeks":
+		case "wk":
+		case "w":
+			for (i = 0; i < count * 7; i++) {
 				if (i == 0) dates.push(now.toDateString());
-				else dates.push(getDateStringBefore(dates[i - 1]));
+				else {
+					var newDate = getDateStringBefore(dates[i - 1]);
+					if (newDate == establishedDate) break;
+					else dates.push(newDate);
+				}
 			}
 			break;
 
-		case "21D":
-			for (i = 0; i < 21; i++) {
+		case "month":
+		case "months":
+		case "m":
+			for (i = 0; i < count * 31; i++) {
 				if (i == 0) dates.push(now.toDateString());
-				else dates.push(getDateStringBefore(dates[i - 1]));
+				else {
+					var newDate = getDateStringBefore(dates[i - 1]);
+					if (newDate == establishedDate) break;
+					else dates.push(newDate);
+				}
 			}
 			break;
 
-		case "112D":
-			for (i = 0; i < 112; i++) {
+		case "year":
+		case "years":
+		case "y":
+			for (i = 0; i < count * 365; i++) {
 				if (i == 0) dates.push(now.toDateString());
-				else dates.push(getDateStringBefore(dates[i - 1]));
+				else {
+					var newDate = getDateStringBefore(dates[i - 1]);
+					if (newDate == establishedDate) break;
+					else dates.push(newDate);
+				}
 			}
 			break;
 	}
+
 	return dates;
 }
 
@@ -108,6 +133,7 @@ module.exports = {
 		writeChartData();
 	},
 
+	//Currently inactive since data has already been extrapolated
 	extrapolateCount: () => {
 
 		var intialCount = chartData.dates[getCurrentDate()].users;
@@ -153,26 +179,12 @@ module.exports = {
 
 		var range = "";
 
-		var keyword = args.join(" ").substring(6).toLowerCase();
+		if (!args[1] || !args[2]) return;
+		
+		var timescale = args[1].toLowerCase();
+		var limit = parseInt(args[2].toLowerCase());
 
-		switch (keyword) {
-			default:
-			case "1 week":
-				range = "7D";
-				break;
-			//Please do not use this until the rest of the data is filled!
-			case "2 weeks":
-				range = "14D"
-				break;
-			case "3 weeks":
-				range = "21D"
-				break;
-			case "112 days":
-				range = "112D"
-				break;
-		}
-
-		var dates = getDatesInRange(range);
+		var dates = getDatesInRange(timescale, limit);
 		var dateData = getUserDateData(dates);
 
 		dates = dates.reverse();
@@ -251,16 +263,19 @@ module.exports = {
 		var sizeOfField = 7;
 		var totalFields = Math.ceil(dateArray.length / sizeOfField);
 
+		//The embed breaks if I have more than 24 fields. I'm using 2 already so I can also use 22.
+		if (totalFields > 22) totalFields = 22;
+
 		var weekChart = new Discord.RichEmbed()
-			.setTitle(`User Count in ${keyword} Period`)
+			.setTitle(`User Count in a ${limit} ${timescale} period`)
 			.setColor(092030)
-			.setThumbnail("https://i.imgur.com/zEOYDNJ.png")
+			.setThumbnail(message.author.avatarURL)
 			for (i = 0; i < totalFields; i++) {
 				var tempArray = [];
 				for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
 					tempArray.push(dateArray[j]);
 				}
-				weekChart.addField(`Week ${i + 1}`, tempArray, true);
+				weekChart.addField(`Week ${i}`, tempArray, true);
 			}
 			weekChart.addField("Statistics",`${change}\nThe date with the most users [${highDay[1]}] was ${highDay[0]}\nThe date with the least users [${lowDay[1]}] was ${lowDay[0]}`, true)
 			weekChart.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
