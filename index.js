@@ -16,6 +16,7 @@ const submitJS = require("./submit.js");
 const challengeJS = require("./chalEmbed.js");
 const adminJS = require("./admin.js");
 const chartJS = require("./chart.js");
+const effectJS = require("./EFFConverter.js");
 
 let bugData = JSON.parse(fs.readFileSync('./bugData.json', 'utf8'));
 let issueData = JSON.parse(fs.readFileSync('./issueData.json', 'utf8'))
@@ -127,7 +128,6 @@ bot.on("guildDelete", guild =>
 
 bot.on("message", function(message)
 {
-  chartJS.uploadGuildData();
 	updateGuildCount();
 
 	function ResetEmbedChallenge()
@@ -144,26 +144,7 @@ bot.on("message", function(message)
 
 	var args = message.content.substring(config.prefix.length).split(" ");
 
-	if (args.length < 2)
-	{
-		for (i = 1; i < 4; i++)
-		{
-			args[i] = "";
-		}
-	}
-
-	var suggestargs = message.content.substring(config.prefix.length).slice(8);
-
-	function CheckGuild() {
-		if (message.channel.type === "text")
-		{
-			//There are two discords that piss me off. These ones are blocked.
-			if (message.guild.id == 264445053596991498) return;
-			if (message.guild.id == 110373943822540800) return;
-		}
-	}
-
-	if (!message.content.startsWith(config.prefix)) CheckGuild();
+	if (args.length < 2) for (i = 1; i < 4; i++) args[i] = "";
 
 	if (message.content.startsWith(config.prefix)) // ~ commands
 	{
@@ -178,6 +159,9 @@ bot.on("message", function(message)
 
 		switch (args[0].toLowerCase())
 		{
+			case "convert":
+			effectJS.readMessage(bot, message, args);
+			break;
 			case "chart":
 			chartJS.createChart(bot, message, args);
 			break;

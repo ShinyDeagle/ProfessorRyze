@@ -1,0 +1,119 @@
+{
+  "effects": {
+    "actionbartext": {
+      "position": "",
+      "effect": "",
+      "message": ""
+    },
+    "blockbreak": {
+      "position": "",
+      "effect": "",
+      "id": ""
+    },
+    "broadcast": {
+      "position": "",
+      "effect": "",
+      "string": ""
+    },
+    "cloud": {
+      "position": "",
+      "effect": "",
+      "radius": ""
+    },
+    "fireworks": {
+      "position": "",
+      "effect": "",
+      "flicker": "",
+      "trail": "",
+      "type": "",
+      "colors": "",
+      "fade-colors": "",
+      "flight": ""
+    },
+    "itemcooldown": {
+      "position": "",
+      "effect": "",
+      "item": "",
+      "duration": "",
+    },
+    "itemspray": {
+      "position": "",
+      "effect": "",
+      "type": "",
+      "quantity": "",
+      "duration": "",
+      "force": ""
+    },
+    "nova": {
+      "position": "",
+      "effect": "",
+      "type": "",
+      "data": "",
+      "radius": "",
+      "expand-interval": ""
+    },
+    "particleline": {
+      "position": "",
+      "effect": "",
+      "distance-between": "",
+      "name": "",
+      "horiz-spread": "",
+      "vert-spread": "",
+      "speed": "",
+      "count": "",
+      "y-offset": "",
+      "color": ""
+    },
+    "particles": {
+      "position": "",
+      "effect": "",
+      "name": "",
+      "horiz-spread": "",
+      "vert-spread": "",
+      "speed": "",
+      "count": "",
+      "y-offset": "",
+      "color": ""
+    },
+    "potion": {
+      "position": "",
+      "effect": "",
+      "color": "",
+      "duration": ""
+    },
+    "smoke": {
+      "position": "",
+      "effect": "",
+      "dir": ""
+    },
+    "smokeswirl": {
+      "position": "",
+      "effect": "",
+      "duration": ""
+    },
+    "smoketrail": {
+      "position": "",
+      "effect": "",
+      "interval": ""
+    },
+    "sound": {
+      "position": "",
+      "effect": "",
+      "sound": "",
+      "volume": "",
+      "pitch": ""
+    },
+    "soundpersonal": {
+      "position": "",
+      "effect": "",
+      "sound": "",
+      "volume": "",
+      "pitch": ""
+    },
+    "splashpotion": {
+      "position": "",
+      "effect": "",
+      "potion": ""
+    }
+  }
+}

@@ -8,20 +8,6 @@ var establishedDate = "Fri Jul 14 2017";
 
 let chartData = JSON.parse(fs.readFileSync('./chartData.json', 'utf8'));
 
-var json = chartData;
-
-require('isomorphic-fetch')
-var Dropbox = require('dropbox').Dropbox;
-var dbx = new Dropbox ({
-	accessToken: '14NyOEb0iqwAAAAAAAAA7wQhJT2b3Yir0cdX96qaxO8U-tmTjtXW9I0qpXDqPezE'
-})
-.filesUpload({
-	contents: json,
-	path: "/usercount",
-	mode: "add",
-	autorename: true
-})
-.then(console.log, console.error);
 
 function writeChartData() {
 	fs.writeFile("./chartData.json", JSON.stringify(chartData), (err) => {
@@ -120,10 +106,13 @@ function getUserDateData(dateArray) {
 	return data;
 }
 
-module.exports = {
+function backupGuildData() {
+	fs.writeFile(`./chartDataBackups/${getCurrentDate()}.json`, JSON.stringify(chartData), (err) => {
+		if (err) console.error(err)
+	});
+}
 
-	uploadGuildData: () => {
-	},
+module.exports = {
 
 	updateGuildCount: (count) => {
 		if (!chartData.dates[getCurrentDate()]) chartData.dates[getCurrentDate()] = {
@@ -131,44 +120,38 @@ module.exports = {
 		}
 		chartData.dates[getCurrentDate()].users = count;
 		writeChartData();
+		backupGuildData();
 	},
 
-	//Currently inactive since data has already been extrapolated
+	//Currently inactive since data has already been extrapolated.
+	//Try not to call it at any point
 	extrapolateCount: () => {
 
 		var intialCount = chartData.dates[getCurrentDate()].users;
 
 		var finalDay = "Fri Jul 14 2017"
 		var extrapolatedDay = getCurrentDate();
-		console.log(extrapolatedDay);
 		var extrapolatedCount = chartData.dates[extrapolatedDay].users;
-		console.log(extrapolatedCount);
 		var countBefore = extrapolatedCount;
-		console.log(countBefore);
 
 		var i = 0;
 		while (extrapolatedDay != finalDay) {
 			if (!chartData.dates[extrapolatedDay]) {
-				console.log("Doesn't exist, going to add data");
 				if (countBefore < 10) break;
 				var newCount = countBefore - 1;
 				if (i == 3 || i == 5) newCount--;
 				if (i == 10) i = 0;
 				i++;
-				console.log(newCount);
 				chartData.dates[extrapolatedDay] = {
 					users: newCount
 				}
 				countBefore = chartData.dates[extrapolatedDay].users;
-				console.log(`${extrapolatedDay}:${chartData.dates[extrapolatedDay].users}`);
 				extrapolatedDay = getDateStringBefore(extrapolatedDay);
 			} else {
 				extrapolatedDay = getDateStringBefore(extrapolatedDay);
 				countBefore = extrapolatedCount;
 				console.log(countBefore);
 				if (chartData.dates[extrapolatedDay]) extrapolatedCount = chartData.dates[extrapolatedDay].users;
-				console.log(`Skipped ${extrapolatedDay}`);
-				console.log(extrapolatedCount);
 				continue;
 			}
 		}
