@@ -1,12 +1,7 @@
 //External NPMs
 const Discord = require('discord.js');
 const fs = require('fs');
-const randomInt = require('random-int');
 const config =  require("./config.json");
-const download = require('download');
-const finder = require('find-files');
-const glob = require('glob');
-const readdirp = require('readdirp');
 
 //File Requires
 const versionJS = require("./version.js");
@@ -17,9 +12,6 @@ const challengeJS = require("./chalEmbed.js");
 const adminJS = require("./admin.js");
 const chartJS = require("./chart.js");
 const effectJS = require("./EFFConverter.js");
-
-let bugData = JSON.parse(fs.readFileSync('./bugData.json', 'utf8'));
-let issueData = JSON.parse(fs.readFileSync('./issueData.json', 'utf8'))
 
 var bot = new Discord.Client()
 
@@ -82,12 +74,11 @@ bot.on("ready", function() {
 		})
 });
 
-	bot.on("guildCreate", guild =>
-	{
-		// This event triggers when the bot joins a guild.
-		console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-		bot.channels.get("390754803959070720").send(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`)
-	});
+bot.on("guildCreate", guild => {
+	// This event triggers when the bot joins a guild.
+	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+	bot.channels.get("390754803959070720").send(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`)
+});
 
 bot.on("guildMemberAdd", member =>
 {
@@ -130,8 +121,7 @@ bot.on("message", function(message)
 {
 	updateGuildCount();
 
-	function ResetEmbedChallenge()
-	{
+	function ResetEmbedChallenge() {
 		challengename = "Empty"
 		challengetheme = "Empty"
 		challengerules = "Empty"
@@ -146,16 +136,8 @@ bot.on("message", function(message)
 
 	if (args.length < 2) for (i = 1; i < 4; i++) args[i] = "";
 
-	if (message.content.startsWith(config.prefix)) // ~ commands
-	{
-		//I'm going to register their bug data if they are new.
-		if (!bugData[message.author.id]) bugData[message.author.id] =
-		{
-			buglevel: 0,
-			bugmsv: "Empty",
-			bugsv: "Empty",
-			bugdesc: "Empty"
-		}
+	// ~ commands
+	if (message.content.startsWith(config.prefix)) {
 
 		switch (args[0].toLowerCase())
 		{
@@ -313,12 +295,7 @@ bot.on("message", function(message)
 			break;
 		} //end of switch
 	}
-	fs.writeFile("./bugData.json", JSON.stringify(bugData), (err) => {
-		if (err) console.error(err)
-	});
-	fs.writeFile("./issueData.json", JSON.stringify(issueData), (err) => {
-		if (err) console.error(err)
-	});
+	//Updates the guild count at the end.
 	updateGuildCount();
 })
 bot.login(config.token);

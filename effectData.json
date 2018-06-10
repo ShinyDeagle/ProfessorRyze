@@ -34,7 +34,7 @@
       "position": "",
       "effect": "",
       "item": "",
-      "duration": "",
+      "duration": ""
     },
     "itemspray": {
       "position": "",
@@ -56,7 +56,7 @@
       "position": "",
       "effect": "",
       "distance-between": "",
-      "name": "",
+      "particle-name": "",
       "horiz-spread": "",
       "vert-spread": "",
       "speed": "",
@@ -67,7 +67,7 @@
     "particles": {
       "position": "",
       "effect": "",
-      "name": "",
+      "particle-name": "",
       "horiz-spread": "",
       "vert-spread": "",
       "speed": "",
