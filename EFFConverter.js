@@ -18,7 +18,7 @@ module.exports = {
 	readMessage: (client, message, args) => {
 		if (!args[1]) return;
 
-		if (args[1].toLowerCase() == "guide" || !args[1].startsWith("```yml") || !args[1].endsWith("```")) return message.reply("Please have a look at this gif, it gives you an example of its uses\nhttps://i.imgur.com/jy8YPz0.gif");
+    if (args[1].toLowerCase() == "guide") return message.reply("Please have a look at this gif, it gives you an example of its uses\nhttps://i.imgur.com/jy8YPz0.gif");
 
 		//Remove possible codeblocks from message
 		var mString = args.join(" ").replace(/`/g, "").replace("yml", "").replace(/\n/g, "")

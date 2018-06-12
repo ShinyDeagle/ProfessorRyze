@@ -1,11 +1,13 @@
-const emojiDB = require("./emojiDB.js");
 const Discord = require('discord.js');
 const readdirp = require('readdirp');
+
+const emojiDB = require("./emojiDB.js");
+const statsJS = require("./stats.js");
 
 var bot = new Discord.Client()
 //Fetch.js makes use of the readdirp module. If you want to know how this works. You'll need to check the module page.
 
-module.exports= {
+module.exports = {
 	validate: (client, message, args) => {
 		if (!args[1]) {
 			message.reply("I need some criteria in the form of a name!");
@@ -113,6 +115,7 @@ module.exports= {
 										if (datastring == "Empty") datastring = "$|$";
 										foundWord = true;
 										embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${path}\n`)
+										statsJS.incrementFetchData(message.author.id, name);
 									} else {
 										var score = compareAndScore(`${args[1].toLowerCase()}.java`, name.toLowerCase());
 										if (score == 1) {
@@ -135,6 +138,7 @@ module.exports= {
 									var path = guessPath[i];
 									embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${path}\n`);
 									goodGuesses++;
+									statsJS.incrementFetchData(message.author.id, name);
 								}
 							}
 
