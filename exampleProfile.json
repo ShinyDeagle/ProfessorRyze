@@ -1,0 +1,61 @@
+{
+  "experience": {
+    "level": 1,
+    "exp": 0,
+    "next-exp": 0
+  },
+  "profile": {
+    "rank": "Beginner",
+    "title": "Typical",
+    "status": "User"
+  },
+  "ranks": {
+    "Beginner": true,
+    "Intermediate": false,
+    "Advanced": false,
+    "Wizard": false,
+    "Admin": false,
+    "Supervisor": false
+  },
+  "titles": {
+    "Typical": true,
+    "Mediorce": false,
+    "Experienced": false,
+    "Thorough": false,
+    "Excelled": false,
+    "Adept": false,
+    "Worthy": false,
+    "Proficient": false,
+    "Supreme": false,
+    "First-Rate": false,
+    "Perfectionist": false
+  },
+  "exams": {
+    "graded": {
+      "Beginner": {
+        "1": {
+          "score": 60,
+          "candidate": ""
+        }
+      },
+      "Intermediate": {},
+      "Advanced": {},
+      "Wizard": {},
+      "total": 0
+    },
+    "completed": {
+      "Beginner": {
+        "1": {
+          "score": 60,
+          "examiner": "",
+          "notes": ""
+        }
+      },
+      "Intermediate": {},
+      "Advanced": {},
+      "Wizard": {},
+      "total": 0
+    },
+		"total": 0
+  }
+}

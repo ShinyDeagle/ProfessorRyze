@@ -86,6 +86,22 @@ function getLeaderboardPosition(id) {
   }
 }
 
+function getCurrentDate() {
+	var date;
+	var now = new Date(Date.now()).toDateString();
+	if (chartData.currentdate == now) return chartData.currentdate;
+	else {
+		chartData.currentdate = now;
+		return now;
+	}
+}
+
+function backupStatData() {
+	fs.writeFile(`./statDataBackups/${getCurrentDate()}.json`, JSON.stringify(statData), (err) => {
+		if (err) console.error(err)
+	});
+}
+
 //Oh my god, he uses StackOverFlow Code. What a bad guy!!!!
 function getOrdinalSuffix(i) {
     var j = i % 10,
@@ -119,11 +135,12 @@ module.exports = {
     statData.fetch.total++;
 
     writeStatData();
+    backupStatData();
   },
   produceLeaderboardReport: (client, message, args, limit) => {
     sortUsersByTotal();
 
-    var top = [];
+    var topString = "";
     var globalTotal = statData.fetch.total;
 
     for (i = 0; i < limit; i++) {
@@ -132,12 +149,12 @@ module.exports = {
       var user = client.users.find(val => val.id == id)
       var username = user.username;
       var total = statData.fetch.users[id].total;
-      top.push(`${username}: ${total} - ${(total / globalTotal) * 100}%`);
+      topString += `${username}: ${total} - ${((total / globalTotal) * 100).toFixed(1)}%\n`;
     }
 
     var embed = new Discord.RichEmbed()
       .setTitle(`Global | Top ${limit} Fetch Statistics`)
-      .addField("User: Total Fetches - % of Total Amount",`${top}`)
+      .addField("User: Total Fetches - % of Total Amount",`${topString}`)
       .setThumbnail(message.author.avatarURL)
       .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
       .setTimestamp()
@@ -184,7 +201,7 @@ module.exports = {
       .setTitle(`${user.username}'s Fetch Statistics`)
       .addField("Totals",totalString)
       .addField("Specifics",specificString)
-      .setThumbnail(message.author.avatarURL)
+      .setThumbnail(user.avatarURL)
       .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
       .setTimestamp()
     message.channel.send(embed);

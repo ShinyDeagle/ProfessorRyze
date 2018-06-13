@@ -78,11 +78,11 @@ bot.on("guildMemberAdd", member => {
     .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
     .setDescription("Here is a basic rundown")
     .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
-    .addField("Commands", "?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands\n **⤷** Alternatively, you can mention the bot.")
+    .addField("Commands", "?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands.")
     .addField("Rules", "View the discord rules on the #welcome channel\n\nWhen using the support channels, there are some special terms you'll need to get acquainted with.\n\nRead them by using ~rules support.\nTo gain access to the support channels, you must **?acceptrules** the rules.")
   member.send(embed);
 
-  var msguild = bot.guilds.get("335237931633606656")
+  var msguild = bot.guilds.get("335237931633606656");
 
   msguild.fetchMembers().then(g => {
     bot.user.setActivity(`${g.members.size} MS Configers`, {
@@ -111,15 +111,6 @@ bot.on("guildDelete", guild => {
 
 bot.on("message", function(message) {
   updateGuildCount();
-
-  function ResetEmbedChallenge() {
-    challengename = "Empty"
-    challengetheme = "Empty"
-    challengerules = "Empty"
-    challengeinstructions = "Empty"
-    challengetime = "24 Hours"
-    challengeguide = "https://i.imgur.com/2hXcHrZ.gif"
-  }
 
   if (message.author.equals(bot.user)) return;
 
@@ -228,76 +219,7 @@ bot.on("message", function(message) {
             break;
         }
         break;
-
-        // list command
-
-      case "list":
-        switch (args[1].toLowerCase()) {
-          case "nisovin":
-            var embed = new Discord.RichEmbed()
-              .setTitle("Useful Links")
-              .setColor(092030)
-              .setAuthor("Professor Ryze - MagicSpells ~cmds bot")
-              .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
-              .setDescription("Here is a list of links that would be useful in one way or another while you're coding your own spells.")
-              .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord. This bot was created to aid users of the MagicSpells Plugin for Minecraft 1.9 to 1.12.2", "https://i.imgur.com/zEOYDNJ.png")
-              .addField("List of Available Spells", "http://nisovin.com/magicspells/spelllist")
-              .addField("General Configuration", "http://nisovin.com/magicspells/generalconfiguration")
-              .addField("Spell Configuration", "http://nisovin.com/magicspells/spellconfiguration")
-              .addField("Spell Effects", "http://nisovin.com/magicspells/spelleffects")
-              .addField("Mana Configuration", "http://nisovin.com/magicspells/manaconfiguration")
-              .addField("Magic Zone Configuration", "http://nisovin.com/magicspells/nomagiczones")
-              .addField("Modifiers", "http://nisovin.com/magicspells/modifiers")
-              .addField("Variables", "http://nisovin.com/magicspells/variables")
-              .addField("Permissions", "http://nisovin.com/magicspells/permissions")
-              .addField("Pre-defined Items", "http://nisovin.com/magicspells/predefineditems")
-            message.channel.send(embed);
-            bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
-            break;
-
-          case "github":
-            var embed = new Discord.RichEmbed()
-              .setTitle("Useful Links")
-              .setColor(092030)
-              .setAuthor("Professor Ryze - MagicSpells ~cmds bot")
-              .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
-              .setDescription("Here is a list of links that would be useful in one way or another while you're coding your own spells.")
-              .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord. This bot was created to aid users of the MagicSpells Plugin for Minecraft 1.9 to 1.12.2", "https://i.imgur.com/zEOYDNJ.png")
-              .addField("List of Effectlib Effects", "https://goo.gl/1LKW5U")
-              .addField("List of Compatible Particle Effects", "https://goo.gl/rGPXqv")
-              .addField("All Instant Spells", "https://goo.gl/MxyYWu")
-              .addField("All Targeted Spells", "https://goo.gl/PNfCHe")
-              .addField("All Buff Spells", "https://goo.gl/PSHPPF")
-              .addField("All Command Spells", "https://goo.gl/aAEyDQ")
-              .addField("All Passive Spell Listeners", "https://goo.gl/jnoHLh")
-              .addField("All Possible Modifiers", "https://goo.gl/tajSP2")
-            message.channel.send(embed);
-            bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
-            break;
-
-          case "tutorial":
-            var embed = new Discord.RichEmbed()
-              .setTitle("Useful Links")
-              .setColor(092030)
-              .setAuthor("Professor Ryze - MagicSpells ~cmds bot")
-              .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
-              .setDescription("Thanks to Niblexis for these helpful tutorials.")
-              .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord. This bot was created to aid users of the MagicSpells Plugin for Minecraft 1.9 to 1.12.2", "https://i.imgur.com/zEOYDNJ.png")
-              .addField("Reading the Github", "https://goo.gl/niAMhq")
-              .addField("Particle Projectiles", "https://goo.gl/tk4Xdi")
-              .addField("General Debugging", "https://goo.gl/jZj8G2")
-              .addField("Variables I - Intro", "https://goo.gl/g6VeYj")
-              .addField("Variables II - Meta", "https://goo.gl/d6h6ST")
-              .addField("Modifiers I - Intro", "https://goo.gl/Mmg5ws")
-              .addField("Modifiers II - Collections", "https://goo.gl/pb317Z")
-            message.channel.send(embed);
-            bot.channels.get("392391057490444291").send(message.author.username + "/" + message.author.id + " asked " + message.content)
-            break;
-        }
-        break;
     } //end of switch
   }
-  //Updates the guild count at the end.
-  updateGuildCount();
 })
 bot.login(config.token);
