@@ -15,6 +15,7 @@
     "download": "^6.2.5",
     "dropbox": "^4.0.5",
     "es6-promise": "^4.2.4",
+    "file-exists": "^5.0.1",
     "find-file": "^1.0.1",
     "images-downloader": "^1.0.3",
     "install": "^0.10.2",

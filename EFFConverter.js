@@ -50,7 +50,7 @@ module.exports = {
     Object.keys(jsonToParse).forEach(function(config) {
       var array = Array.from(jsonToParse[config]);
       var effect = getEffectData(array[1]);
-			if (effect == null) continue;
+			if (effect == null || effect == undefined) return;
       var i = 0;
       parsedData[config] = {};
       Object.keys(effect).forEach(function(parameter) {

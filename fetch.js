@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const fs = require('fs');
 const readdirp = require('readdirp');
 
 const emojiDB = require("./emojiDB.js");
@@ -6,6 +7,7 @@ const statsJS = require("./stats.js");
 
 var bot = new Discord.Client()
 //Fetch.js makes use of the readdirp module. If you want to know how this works. You'll need to check the module page.
+let exp = JSON.parse(fs.readFileSync(`./exp.json`, 'utf8'));
 
 module.exports = {
 	validate: (client, message, args) => {

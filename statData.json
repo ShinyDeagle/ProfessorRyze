@@ -1,1 +1,296 @@
-{"fetch":{"users":{"263401727418564610":{"fetches":{"CastListener.java":2,"HoldingPreciseCondition.java":2,"ManaListener.java":2,"BuffListener.java":1,"FishListener.java":1,"JoinListener.java":1,"KillListener.java":1,"QuitListener.java":1,"SpellCastListener.java":1,"Modifier.java":1,"HoldingCondition.java":1,"OffhandCondition.java":1,"HasItemPreciseCondition.java":1,"WearingPreciseCondition.java":1,"BlinkSpell":1,"ParticleProjectileSpell.java":1},"total":18},"164733971316342784":{"fetches":{"MagicSpells.java":1,"ParseSpell.java":1,"PainSpell.java":1,"UnderBlockCondition.java":1,"OverBlockCondition.java":1},"total":5},"192710597106728960":{"fetches":{"PainSpell.java":1,"ResistSpell.java":1,"DotSpell.java":1},"total":3}},"total":26,"globalFetches":{"CastListener.java":2,"HoldingPreciseCondition.java":2,"ManaListener.java":2,"BuffListener.java":1,"FishListener.java":1,"JoinListener.java":1,"KillListener.java":1,"QuitListener.java":1,"SpellCastListener.java":1,"Modifier.java":1,"HoldingCondition.java":1,"OffhandCondition.java":1,"HasItemPreciseCondition.java":1,"WearingPreciseCondition.java":1,"BlinkSpell":1,"ParticleProjectileSpell.java":1,"MagicSpells.java":1,"ParseSpell.java":1,"PainSpell.java":1,"UnderBlockCondition.java":1,"OverBlockCondition.java":1,"ResistSpell.java":1,"DotSpell.java":1}}}
+{
+  "fetch": {
+    "users": {
+      "263401727418564610": {
+        "fetches": {
+          "CastListener.java": 2,
+          "HoldingPreciseCondition.java": 2,
+          "ManaListener.java": 2,
+          "ParticleProjectileSpell.java": 2,
+          "PotionEffectSpell.java": 2,
+          "BuffListener.java": 1,
+          "FishListener.java": 1,
+          "JoinListener.java": 1,
+          "KillListener.java": 1,
+          "QuitListener.java": 1,
+          "SpellCastListener.java": 1,
+          "Modifier.java": 2,
+          "HoldingCondition.java": 1,
+          "OffhandCondition.java": 1,
+          "HasItemPreciseCondition.java": 1,
+          "WearingPreciseCondition.java": 1,
+          "BlinkSpell": 1,
+          "ConfusionSpell.java": 1,
+          "SpellTargetEvent.java": 1,
+          "TargetedEntitySpell.java": 1,
+          "TargetedLocationSpell.java": 1,
+          "TargetedMultiSpell.java": 1,
+          "TargetInfo.java": 1,
+          "TargetingCondition.java": 1,
+          "SpellTargetedListener.java": 1,
+          "ParticleCloudSpell.java": 1,
+          "CrippleSpell.java": 1,
+          "DisarmSpell.java": 1,
+          "PotionEffect.java": 1,
+          "PotionEffectCondition.java": 1,
+          "MinionSpell.java": 2,
+          "BlinkSpell.java": 1,
+          "GateSpell.java": 2,
+          "EffectLibEffect.java": 1,
+          "BowSpell.java": 1,
+          "TomeSpell.java": 1,
+          "PassiveSpell.java": 2,
+          "DrainlifeSpell.java": 1,
+          "ForcepushSpell.java": 1,
+          "ForcebombSpell.java": 1,
+          "ForcetossSpell.java": 1,
+          "MarkSpell.java": 1,
+          "PortalSpell.java": 1
+        },
+        "total": 51
+      },
+      "164733971316342784": {
+        "fetches": {
+          "MagicSpells.java": 3,
+          "ParseSpell.java": 2,
+          "PainSpell.java": 9,
+          "UnderBlockCondition.java": 1,
+          "OverBlockCondition.java": 1,
+          "ParticleProjectileSpell.java": 1,
+          "ParticleNameUtil.java": 1,
+          "ConjureSpell.java": 2,
+          "ManaSpell.java": 1,
+          "CombustSpell.java": 5,
+          "GeyserSpell.java": 2,
+          "AreaEffectSpell.java": 4,
+          "NovaEffect.java": 1,
+          "ThrowBlockSpell.java": 1,
+          "HomingMissileSpell.java": 1,
+          "ArmorSpell.java": 2,
+          "ImbueSpell.java": 1,
+          "LocationSpell.java": 1,
+          "MenuSpell.java": 1,
+          "ExternalCommandSpell.java": 2,
+          "DataSpell.java": 2,
+          "DataEntity.java": 1,
+          "FatalDamageListener.java": 1,
+          "TeachSpell.java": 1,
+          "EffectLibEffect.java": 2,
+          "ReflectSpell.java": 1,
+          "ForcebombSpell.java": 1,
+          "ForcepushSpell.java": 1,
+          "VelocitySpell.java": 1,
+          "PlaceholderAPIDataSpell.java": 1,
+          "SpellEffect.java": 1
+        },
+        "total": 55
+      },
+      "435810117649170453": {
+        "fetches": {
+          "ManaHandler.java": 1,
+          "ManaRank.java": 1,
+          "MagnetSpell.java": 2,
+          "HeartsEffect.java": 1,
+          "PotionEffect.java": 1,
+          "PotionEffectCondition.java": 1,
+          "PotionEffectSpell.java": 2,
+          "WallSpell.java": 1,
+          "ParticleProjectileSpell.java": 1,
+          "StunSpell.java": 1,
+          "NovaEffect.java": 1
+        },
+        "total": 13
+      },
+      "189281583117762572": {
+        "fetches": {
+          "ParticleProjectileSpell.java": 1,
+          "AreaEffectSpell.java": 1,
+          "FacingCondition.java": 1,
+          "FlyingCondition.java": 1,
+          "RidingCondition.java": 1,
+          "TomeSpell.java": 1,
+          "BombSpell.java": 1,
+          "HomingArrowSpell.java": 1,
+          "HomingMissileSpell.java": 1
+        },
+        "total": 9
+      },
+      "183920962385870848": {
+        "fetches": {
+          "AngryEffect.java": 1,
+          "CloudEffect.java": 1,
+          "SmokeEffect.java": 1,
+          "SoundEffect.java": 1,
+          "TitleEffect.java": 1
+        },
+        "total": 5
+      },
+      "192884388747280384": {
+        "fetches": {
+          "ParseSpell.java": 1,
+          "VariableManager.java": 1,
+          "BuffListener.java": 1,
+          "WitherSkullSpell.java": 1
+        },
+        "total": 4
+      },
+      "192710597106728960": {
+        "fetches": {
+          "PainSpell.java": 1,
+          "ResistSpell.java": 1,
+          "DotSpell.java": 1
+        },
+        "total": 3
+      },
+      "209529870269677568": {
+        "fetches": {
+          "Variable.java": 1,
+          "DataSpell.java": 1
+        },
+        "total": 2
+      },
+      "444972880518971402": {
+        "fetches": {
+          "MinionSpell.java": 1
+        },
+        "total": 1
+      },
+      "359658850724478978": {
+        "fetches": {
+          "MinionSpell.java": 1
+        },
+        "total": 1
+      },
+      "147729496068325376": {
+        "fetches": {
+          "Modifier.java": 1
+        },
+        "total": 1
+      },
+      "321386112448856064": {
+        "fetches": {
+          "ParticleProjectileSpell.java": 1
+        },
+        "total": 1
+      },
+      "291013007608119299": {
+        "fetches": {
+          "Modifier.java": 1
+        },
+        "total": 1
+      },
+      "123535343965306880": {
+        "fetches": {
+          "PainSpell.java": 1
+        },
+        "total": 1
+      },
+      "222516900884774914": {
+        "fetches": {
+          "ParticleProjectileSpell.java": 1
+        },
+        "total": 1
+      },
+      "183949002386046976": {
+        "fetches": {
+          "StunSpell.java": 1
+        },
+        "total": 1
+      }
+    },
+    "total": 150,
+    "globalFetches": {
+      "CastListener.java": 2,
+      "HoldingPreciseCondition.java": 2,
+      "ManaListener.java": 2,
+      "BuffListener.java": 2,
+      "FishListener.java": 1,
+      "JoinListener.java": 1,
+      "KillListener.java": 1,
+      "QuitListener.java": 1,
+      "SpellCastListener.java": 1,
+      "Modifier.java": 4,
+      "HoldingCondition.java": 1,
+      "OffhandCondition.java": 1,
+      "HasItemPreciseCondition.java": 1,
+      "WearingPreciseCondition.java": 1,
+      "BlinkSpell": 1,
+      "ParticleProjectileSpell.java": 7,
+      "MagicSpells.java": 3,
+      "ParseSpell.java": 3,
+      "PainSpell.java": 10,
+      "UnderBlockCondition.java": 1,
+      "OverBlockCondition.java": 1,
+      "ResistSpell.java": 1,
+      "DotSpell.java": 1,
+      "ManaHandler.java": 1,
+      "ManaRank.java": 1,
+      "MagnetSpell.java": 2,
+      "ConfusionSpell.java": 1,
+      "SpellTargetEvent.java": 1,
+      "TargetedEntitySpell.java": 1,
+      "TargetedLocationSpell.java": 1,
+      "TargetedMultiSpell.java": 1,
+      "TargetInfo.java": 1,
+      "TargetingCondition.java": 1,
+      "SpellTargetedListener.java": 1,
+      "ParticleCloudSpell.java": 1,
+      "CrippleSpell.java": 1,
+      "DisarmSpell.java": 1,
+      "ParticleNameUtil.java": 1,
+      "ConjureSpell.java": 2,
+      "ManaSpell.java": 1,
+      "CombustSpell.java": 5,
+      "HeartsEffect.java": 1,
+      "PotionEffect.java": 2,
+      "PotionEffectCondition.java": 2,
+      "PotionEffectSpell.java": 4,
+      "WallSpell.java": 1,
+      "MinionSpell.java": 4,
+      "BlinkSpell.java": 1,
+      "GateSpell.java": 2,
+      "EffectLibEffect.java": 3,
+      "BowSpell.java": 1,
+      "TomeSpell.java": 2,
+      "PassiveSpell.java": 2,
+      "DrainlifeSpell.java": 1,
+      "Variable.java": 1,
+      "DataSpell.java": 3,
+      "VariableManager.java": 1,
+      "ForcepushSpell.java": 2,
+      "ForcebombSpell.java": 2,
+      "ForcetossSpell.java": 1,
+      "MarkSpell.java": 1,
+      "PortalSpell.java": 1,
+      "GeyserSpell.java": 2,
+      "AreaEffectSpell.java": 5,
+      "NovaEffect.java": 2,
+      "ThrowBlockSpell.java": 1,
+      "FacingCondition.java": 1,
+      "FlyingCondition.java": 1,
+      "RidingCondition.java": 1,
+      "BombSpell.java": 1,
+      "HomingArrowSpell.java": 1,
+      "HomingMissileSpell.java": 2,
+      "AngryEffect.java": 1,
+      "CloudEffect.java": 1,
+      "SmokeEffect.java": 1,
+      "SoundEffect.java": 1,
+      "TitleEffect.java": 1,
+      "ArmorSpell.java": 2,
+      "ImbueSpell.java": 1,
+      "LocationSpell.java": 1,
+      "MenuSpell.java": 1,
+      "ExternalCommandSpell.java": 2,
+      "DataEntity.java": 1,
+      "WitherSkullSpell.java": 1,
+      "FatalDamageListener.java": 1,
+      "TeachSpell.java": 1,
+      "ReflectSpell.java": 1,
+      "StunSpell.java": 2,
+      "VelocitySpell.java": 1,
+      "PlaceholderAPIDataSpell.java": 1,
+      "SpellEffect.java": 1
+    }
+  }
+}

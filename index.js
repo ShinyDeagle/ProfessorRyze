@@ -13,6 +13,7 @@ const adminJS = require("./admin.js");
 const chartJS = require("./chart.js");
 const effectJS = require("./EFFConverter.js");
 const statsJS = require("./stats.js")
+const profileJS = require("./profile.js")
 
 var bot = new Discord.Client()
 
@@ -46,6 +47,7 @@ function updateGuildCount() {
 console.log("HP, Check. Mana, Check. Ready To Go.")
 
 bot.on("ready", function() {
+	updateGuildCount();
   bot.user.setUsername("Professor Ryze")
 
   var valid = ["335237931633606656", "383216614851739658", "369109149809770497"]
@@ -72,6 +74,7 @@ bot.on("guildCreate", guild => {
 });
 
 bot.on("guildMemberAdd", member => {
+	updateGuildCount();
   var embed = new Discord.RichEmbed()
     .setTitle('Welcome Screen')
     .setColor(092030)
@@ -110,8 +113,6 @@ bot.on("guildDelete", guild => {
 });
 
 bot.on("message", function(message) {
-  updateGuildCount();
-
   if (message.author.equals(bot.user)) return;
 
   var args = message.content.substring(config.prefix.length).split(" ");
@@ -123,6 +124,9 @@ bot.on("message", function(message) {
   if (message.content.startsWith(config.prefix)) {
 
     switch (args[0].toLowerCase()) {
+			case "profile":
+				profileJS.generateProfile(bot, message, args, message.author.id);
+				break;
       case "convert":
         effectJS.readMessage(bot, message, args);
         break;
@@ -186,7 +190,7 @@ bot.on("message", function(message) {
           .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
           .setDescription("Here is a list of available commands. **Base Commands** don't do anything on their own. You need to add a secondary argument to use it.")
           .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
-          .addField("\🔗 Links", "~list | **Base Command**\n **⤷** ~list nisovin | Displays links from the MS nisovin page\n **⤷** ~list github | Displays links from the MS github page\n **⤷** ~list tutorial | Lunks to various tutorials for MS users\n~invite | **Base Command**\n **⤷** ~invite bot | Bot's Invite Link\n **⤷** ~invite msdiscord | **Official MagicSpells Discord** Link\n **⤷** ~invite botdiscord | Development and Help Center for the bot")
+          .addField("\🔗 Links", "~invite | **Base Command**\n **⤷** ~invite bot | Bot's Invite Link\n **⤷** ~invite msdiscord | **Official MagicSpells Discord** Link\n **⤷** ~invite botdiscord | Development and Help Center for the bot")
           .addField("\↩️ Fetch File", "~fetch | **Base Command**\n **⤷** ~fetch [filename] | fetches a link to the spell on the Github .\n **⤷** ~fetchall [category] | fetchs names of all files in that category\n**Example: instant, targeted.**\n**~fetch and ~fetchall only retrieve .java files**")
           .addField("\📅 View User Counts", "~chart | **Base Command**\n **⤷** ~chart [timescale] [date-range] \n **timescale**: day, week, month, year \n **date-range**: any interger number")
         message.channel.send(embed);

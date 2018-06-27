@@ -7,6 +7,7 @@ const statsJS = require("./stats.js");
 var bot = new Discord.Client()
 
 let statData = JSON.parse(fs.readFileSync('./statData.json', 'utf8'));
+let chartData = JSON.parse(fs.readFileSync('./chartData.json', 'utf8'));
 
 function writeStatData() {
 	fs.writeFile("./statData.json", JSON.stringify(statData), (err) => {
@@ -17,7 +18,7 @@ function writeStatData() {
 function generateUserData(id) {
   statData.fetch.users[id] = {
     fetches: {},
-    total: 0,
+    total: 0
   }
 }
 
@@ -147,6 +148,7 @@ module.exports = {
       if (!Object.keys(statData.fetch.users)[i]) break;
       var id = Object.keys(statData.fetch.users)[i];
       var user = client.users.find(val => val.id == id)
+			if (user == null) continue;
       var username = user.username;
       var total = statData.fetch.users[id].total;
       topString += `${username}: ${total} - ${((total / globalTotal) * 100).toFixed(1)}%\n`;
@@ -179,7 +181,7 @@ module.exports = {
     totalString += `You have a total of ${userFetchData.total} fetches!\n`;
     if (userFetchData.total == 0) totalString += `I won't bother giving you the rest of the information.\nYou don't have any fetches ${emojiDB.react("df")}\n`;
     else {
-      totalString += `You account for ${(userFetchData.total / statData.fetch.total) * 100}% of all the files fetched!\n\n`;
+      totalString += `You account for ${((userFetchData.total / statData.fetch.total) * 100).toFixed(0)}% of all the files fetched!\n\n`;
       leaderboardPosition = getLeaderboardPosition(user.id);
       totalString += `This puts you in ${getOrdinalSuffix(leaderboardPosition)} place against ${Object.keys(statData.fetch.users).length} users!\n\n`
       var highestFetch = Object.keys(userFetchData.fetches)[0];
@@ -190,8 +192,8 @@ module.exports = {
     //Lets list the specific information
     if (userFetchData.total == 0) specificString += "Empty... Actually fetch some files first";
     else {
-      specificString += `You have fetched ${Object.keys(userFetchData.fetches).length} unique keywords! Here are all of them...\n\n`;
-      for (i = 0; i < Object.keys(userFetchData.fetches).length; i++) {
+      specificString += `You have fetched ${Object.keys(userFetchData.fetches).length} unique keywords! Here are the 30 highest ones...\n\n`;
+      for (i = 0; i < 30; i++) {
         specificString += `${Object.keys(userFetchData.fetches)[i]}: ${userFetchData.fetches[Object.keys(userFetchData.fetches)[i]]}\n`;
       }
     }
