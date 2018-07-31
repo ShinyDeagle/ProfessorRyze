@@ -216,7 +216,7 @@ module.exports = {
       .addField("Level and Experience", `Level: ${profileData.stats.level}${notification}\nExperience: ${profileData.stats.exp} / ${profileData.stats.nextExp}`)
       .addField(`Exam Data`, `${examString}`)
       .setThumbnail(message.author.avatarURL)
-      .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+      .setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
       .setTimestamp()
     message.channel.send(profile);
 		profileData.stats.notify = false;

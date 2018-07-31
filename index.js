@@ -71,6 +71,10 @@ bot.on("guildCreate", guild => {
   // This event triggers when the bot joins a guild.
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
   bot.channels.get("390754803959070720").send(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`)
+
+	var valid = ["335237931633606656", "383216614851739658", "369109149809770497"]
+
+  if (!valid.includes(guild.id)) guild.leave();
 });
 
 bot.on("guildMemberAdd", member => {
@@ -80,7 +84,7 @@ bot.on("guildMemberAdd", member => {
     .setColor(092030)
     .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
     .setDescription("Here is a basic rundown")
-    .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+    .setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
     .addField("Commands", "?commandlist | Dyno Commands\n~cmds | Professor Ryze Commands.")
     .addField("Rules", "View the discord rules on the #welcome channel\n\nWhen using the support channels, there are some special terms you'll need to get acquainted with.\n\nRead them by using ~rules support.\nTo gain access to the support channels, you must **?acceptrules** the rules.")
   member.send(embed);
@@ -111,6 +115,10 @@ bot.on("guildDelete", guild => {
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
   bot.channels.get("390754803959070720").send(`I have been removed from: ${guild.name} (id: ${guild.id})`)
 });
+
+bot.on("error", error => {
+	console.log(error);
+})
 
 bot.on("message", function(message) {
   if (message.author.equals(bot.user)) return;
@@ -189,7 +197,7 @@ bot.on("message", function(message) {
           .setAuthor("Professor Ryze - MagicSpells ~help and test bot")
           .setThumbnail("https://i.imgur.com/zEOYDNJ.png")
           .setDescription("Here is a list of available commands. **Base Commands** don't do anything on their own. You need to add a secondary argument to use it.")
-          .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+          .setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
           .addField("\🔗 Links", "~invite | **Base Command**\n **⤷** ~invite bot | Bot's Invite Link\n **⤷** ~invite msdiscord | **Official MagicSpells Discord** Link\n **⤷** ~invite botdiscord | Development and Help Center for the bot")
           .addField("\↩️ Fetch File", "~fetch | **Base Command**\n **⤷** ~fetch [filename] | fetches a link to the spell on the Github .\n **⤷** ~fetchall [category] | fetchs names of all files in that category\n**Example: instant, targeted.**\n**~fetch and ~fetchall only retrieve .java files**")
           .addField("\📅 View User Counts", "~chart | **Base Command**\n **⤷** ~chart [timescale] [date-range] \n **timescale**: day, week, month, year \n **date-range**: any interger number")

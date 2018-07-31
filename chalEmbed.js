@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 var bot = new Discord.Client()
 
-module.exports = {
+module.exports= {
 
 	chalBuilder: (client, message, args) => {
 		//Challenge Embed
@@ -12,7 +12,7 @@ module.exports = {
 			.setColor([255, 165, 0])
 			.setAuthor(`Created by ${message.author.username} called ${challengename}`)
 			.setThumbnail("https://i.imgur.com/zEOYDNJ.png")
-			.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+			.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 			.setImage(`${challengeguide}`)
 			.setTimestamp()
 			.addField(`Name`,`${challengename}`)
@@ -58,7 +58,7 @@ module.exports = {
 							.setAuthor("Professor Ryze - MagicSpells ~cmds bot")
 							.setThumbnail("https://i.imgur.com/zEOYDNJ.png")
 							.setDescription("Here is a list of available commands.")
-							.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+							.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 							.addField("Name", "~chal name", true)
 							.addField("Rules", "~chal rules", true)
 							.addField("Instructions", "~chal instruct", true)

@@ -61,8 +61,8 @@ module.exports = {
 	},
 	fetchKeyword: (client, message, args) => {
 		function compareAndScore(input, output) {
-			var inp = input.replace("spell","").replace(".java","").replace("condition","");
-			var out = output.replace("spell","").replace(".java","").replace("condition","");
+			var inp = input.replace("spell","").replace(".java","").replace("condition","").replace("effect","");
+			var out = output.replace("spell","").replace(".java","").replace("condition","").replace("effect","");
 
 			var inputArray = inp.split("");
 			var outputArray = out.split("");
@@ -84,7 +84,7 @@ module.exports = {
 						.addField("Example","I am looking for a modifier, I'll type [condition] after the name of the modifier.")
 						.setAuthor(`Created with Professor Ryze's Bug System`)
 						.setThumbnail(message.author.avatarURL)
-						.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+						.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 						.setTimestamp()
 					message.channel.send(embed);
 					break;
@@ -107,7 +107,7 @@ module.exports = {
 							var embed = new Discord.RichEmbed()
 								.setTitle(`File Links Found`)
 								.setThumbnail(message.author.avatarURL)
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+								.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
 
 							Object.keys(res.files).forEach(function(id) {
@@ -116,7 +116,13 @@ module.exports = {
 									if (name.toLowerCase() == `${args[1].toLowerCase()}.java`) {
 										if (datastring == "Empty") datastring = "$|$";
 										foundWord = true;
-										embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${path}\n`)
+										if (path.includes("MSRepo")) {
+											var newPath = path.replace("MSRepo","");
+											embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${newPath}\n`)
+										} else {
+											var newPath = path.replace("EffRepo","");
+											embed.addField(name,`https://github.com/Slikey/EffectLib/blob/master/${newPath}\n`)
+										}
 										statsJS.incrementFetchData(message.author.id, name);
 									} else {
 										var score = compareAndScore(`${args[1].toLowerCase()}.java`, name.toLowerCase());
@@ -138,7 +144,13 @@ module.exports = {
 								for (i = 0; i < guessName.length; i++) {
 									var name = guessName[i];
 									var path = guessPath[i];
-									embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${path}\n`);
+									if (path.includes("MSRepo")) {
+										var newPath = path.replace("MSRepo","");
+										embed.addField(name,`https://github.com/TheComputerGeek2/MagicSpells/blob/master/${newPath}\n`)
+									} else {
+										var newPath = path.replace("EffRepo","");
+										embed.addField(name,`https://github.com/Slikey/EffectLib/blob/master/${newPath}\n`)
+									}
 									goodGuesses++;
 									statsJS.incrementFetchData(message.author.id, name);
 								}
@@ -170,16 +182,16 @@ module.exports = {
 				case "guide":
 					var embed = new Discord.RichEmbed()
 						.setTitle(`Guide to using FetchAll Efficiently`)
-						.addField("KeyWords","This is ment to bring a list of all available modifiers, spells and so on. Add a keyword after ~fetchall [keyword] to use it.\nAvailable Keywords are \ninstant, targeted, buff, command, passive, modifier")
+						.addField("KeyWords","This is ment to bring a list of all available modifiers, spells and so on. Add a keyword after ~fetchall [keyword] to use it.\nAvailable Keywords are \ninstant, targeted, buff, command, passive, modifier, effLib, effMS")
 						.addField("Example","I am looking for all modifiers, I'll type ~fetchall modifier")
 						.setAuthor(`Created with Professor Ryze's Fetch System`)
 						.setThumbnail(message.author.avatarURL)
-						.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+						.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 						.setTimestamp()
 					message.channel.send(embed);
 					break;
 				case "instant":
-					readdirp({ root: './GitHubDownload/src/com/nisovin/magicspells/spells/instant', fileFilter: '*.java'}, function (errors, res) {
+					readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/spells/instant', fileFilter: '*.java'}, function (errors, res) {
 							if (errors) {
 									errors.forEach(function (err) {
 										console.error('Error: ', err);
@@ -198,7 +210,7 @@ module.exports = {
 							var embed = new Discord.RichEmbed()
 								.setTitle("All Instant Spells")
 								.setThumbnail(message.author.avatarURL)
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+								.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
 								for (i = 0; i < totalFields; i++) {
 									var tempArray = [];
@@ -213,7 +225,7 @@ module.exports = {
 					});
 					break;
 				case "targeted":
-					readdirp({ root: './GitHubDownload/src/com/nisovin/magicspells/spells/targeted', fileFilter: '*.java'}, function (errors, res) {
+					readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/spells/targeted', fileFilter: '*.java'}, function (errors, res) {
 							if (errors) {
 									errors.forEach(function (err) {
 										console.error('Error: ', err);
@@ -232,7 +244,7 @@ module.exports = {
 							var embed = new Discord.RichEmbed()
 								.setTitle("All Targeted Spells")
 								.setThumbnail(message.author.avatarURL)
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+								.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
 								for (i = 0; i < totalFields; i++) {
 									var tempArray = [];
@@ -247,7 +259,7 @@ module.exports = {
 					});
 					break;
 				case "buff":
-					readdirp({ root: './GitHubDownload/src/com/nisovin/magicspells/spells/buff', fileFilter: '*.java'}, function (errors, res) {
+					readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/spells/buff', fileFilter: '*.java'}, function (errors, res) {
 							if (errors) {
 									errors.forEach(function (err) {
 										console.error('Error: ', err);
@@ -266,7 +278,7 @@ module.exports = {
 							var embed = new Discord.RichEmbed()
 								.setTitle("All Buff Spells")
 								.setThumbnail(message.author.avatarURL)
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+								.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
 								for (i = 0; i < totalFields; i++) {
 									var tempArray = [];
@@ -281,7 +293,7 @@ module.exports = {
 					});
 					break;
 				case "command":
-					readdirp({ root: './GitHubDownload/src/com/nisovin/magicspells/spells/command', fileFilter: '*.java'}, function (errors, res) {
+					readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/spells/command', fileFilter: '*.java'}, function (errors, res) {
 							if (errors) {
 									errors.forEach(function (err) {
 										console.error('Error: ', err);
@@ -300,7 +312,7 @@ module.exports = {
 							var embed = new Discord.RichEmbed()
 								.setTitle("All Command Spells")
 								.setThumbnail(message.author.avatarURL)
-								.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+								.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 								.setTimestamp()
 								for (i = 0; i < totalFields; i++) {
 									var tempArray = [];
@@ -315,7 +327,7 @@ module.exports = {
 					});
 					break;
 					case "passive":
-						readdirp({ root: './GitHubDownload/src/com/nisovin/magicspells/spells/passive', fileFilter: '*.java'}, function (errors, res) {
+						readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/spells/passive', fileFilter: '*.java'}, function (errors, res) {
 								if (errors) {
 										errors.forEach(function (err) {
 											console.error('Error: ', err);
@@ -334,7 +346,7 @@ module.exports = {
 								var embed = new Discord.RichEmbed()
 									.setTitle("All Passive Listeners")
 									.setThumbnail(message.author.avatarURL)
-									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+									.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 									.setTimestamp()
 									for (i = 0; i < totalFields; i++) {
 										var tempArray = [];
@@ -349,7 +361,7 @@ module.exports = {
 						});
 						break;
 					case "modifier":
-						readdirp({ root: './GitHubDownload/src/com/nisovin/magicspells/castmodifiers/conditions', fileFilter: '*.java'}, function (errors, res) {
+						readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/castmodifiers/conditions', fileFilter: '*.java'}, function (errors, res) {
 								if (errors) {
 										errors.forEach(function (err) {
 											console.error('Error: ', err);
@@ -368,7 +380,75 @@ module.exports = {
 								var embed = new Discord.RichEmbed()
 									.setTitle("All Modifier Conditions")
 									.setThumbnail(message.author.avatarURL)
-									.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+									.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
+									.setTimestamp()
+									for (i = 0; i < totalFields; i++) {
+										var tempArray = [];
+										for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+											tempArray.push(array[j]);
+										}
+										embed.addField(`Set ${i}`, tempArray, true);
+									}
+									embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
+								message.channel.send(embed);
+								message.react(emojiDB.react("tick"))
+						});
+						break;
+					case "efflib":
+						readdirp({ root: './GitHubDownload/srcEffRepo/main/java/de/slikey/effectlib/effect', fileFilter: '*.java'}, function (errors, res) {
+								if (errors) {
+										errors.forEach(function (err) {
+											console.error('Error: ', err);
+										});
+								}
+								var array = [];
+								var sizeOfField = 10;
+
+								Object.keys(res.files).forEach(function(id) {
+										var name = res.files[id]['name'];
+										array.push(`${name.replace(".java","")}`);
+								})
+
+								var totalFields = Math.ceil(array.length / sizeOfField);
+
+								var embed = new Discord.RichEmbed()
+									.setTitle("All Effectlib Effects")
+									.setThumbnail(message.author.avatarURL)
+									.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
+									.setTimestamp()
+									for (i = 0; i < totalFields; i++) {
+										var tempArray = [];
+										for (j = 0 + i * sizeOfField; j < sizeOfField + i * sizeOfField; j++) {
+											tempArray.push(array[j]);
+										}
+										embed.addField(`Set ${i}`, tempArray, true);
+									}
+									embed.addField(`I've counted **${array.length}** entries`,"Quite the number")
+								message.channel.send(embed);
+								message.react(emojiDB.react("tick"))
+						});
+						break;
+					case "effms":
+						readdirp({ root: './GitHubDownload/srcMSRepo/com/nisovin/magicspells/spelleffects', fileFilter: '*.java'}, function (errors, res) {
+								if (errors) {
+										errors.forEach(function (err) {
+											console.error('Error: ', err);
+										});
+								}
+								var array = [];
+								var sizeOfField = 10;
+
+								Object.keys(res.files).forEach(function(id) {
+										var name = res.files[id]['name'];
+										array.push(`${name.replace(".java","")}`);
+								})
+
+								var totalFields = Math.ceil(array.length / sizeOfField);
+
+								var embed = new Discord.RichEmbed()
+									.setTitle("All MagicSpells Effects")
+									.setThumbnail(message.author.avatarURL)
+									.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 									.setTimestamp()
 									for (i = 0; i < totalFields; i++) {
 										var tempArray = [];

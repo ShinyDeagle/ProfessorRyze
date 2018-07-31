@@ -16,6 +16,7 @@ function getEffectData(effect) {
 
 module.exports = {
   readMessage: (client, message, args) => {
+		return;
     if (!args[1]) return;
 
     if (args[1].toLowerCase() == "guide") return message.reply("Please have a look at this gif, it gives you an example of its uses\nhttps://i.imgur.com/jy8YPz0.gif");

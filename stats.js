@@ -158,7 +158,7 @@ module.exports = {
       .setTitle(`Global | Top ${limit} Fetch Statistics`)
       .addField("User: Total Fetches - % of Total Amount",`${topString}`)
       .setThumbnail(message.author.avatarURL)
-      .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+      .setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
       .setTimestamp()
     message.channel.send(embed);
   },
@@ -186,14 +186,14 @@ module.exports = {
       totalString += `This puts you in ${getOrdinalSuffix(leaderboardPosition)} place against ${Object.keys(statData.fetch.users).length} users!\n\n`
       var highestFetch = Object.keys(userFetchData.fetches)[0];
       //If I didn't store the fetch as a var, imagine how long this string would be!
-      totalString += `Your most fetched keyword, ${highestFetch}, accounts for ${(userFetchData.fetches[highestFetch] / statData.fetch.globalFetches[highestFetch]) * 100}% of the times it was fetched`;
+      totalString += `Your most fetched keyword, ${highestFetch}, accounts for ${((userFetchData.fetches[highestFetch] / statData.fetch.globalFetches[highestFetch]) * 100).toFixed(0)}% of the times it was fetched`;
     }
 
     //Lets list the specific information
     if (userFetchData.total == 0) specificString += "Empty... Actually fetch some files first";
     else {
       specificString += `You have fetched ${Object.keys(userFetchData.fetches).length} unique keywords! Here are the 30 highest ones...\n\n`;
-      for (i = 0; i < 30; i++) {
+      for (i = 0; i < 30 && i < Object.keys(userFetchData.fetches).length; i++) {
         specificString += `${Object.keys(userFetchData.fetches)[i]}: ${userFetchData.fetches[Object.keys(userFetchData.fetches)[i]]}\n`;
       }
     }
@@ -204,7 +204,7 @@ module.exports = {
       .addField("Totals",totalString)
       .addField("Specifics",specificString)
       .setThumbnail(user.avatarURL)
-      .setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+      .setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
       .setTimestamp()
     message.channel.send(embed);
   }

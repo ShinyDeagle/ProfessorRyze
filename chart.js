@@ -260,7 +260,7 @@ module.exports = {
 				weekChart.addField(`Week ${i}`, tempArray, true);
 			}
 			weekChart.addField("Statistics",`${change}\nThe date with the most users [${highDay[1]}] was ${highDay[0]}\nThe date with the least users [${lowDay[1]}] was ${lowDay[0]}`, true)
-			weekChart.setFooter("Created and Currently Maintained by Rifle D. Luffy#1852 from the Official MS Discord.", "https://i.imgur.com/zEOYDNJ.png")
+			weekChart.setFooter("Maintained by Rifle D. Luffy#1852", "https://i.imgur.com/zEOYDNJ.png")
 			weekChart.addField("Notes","Dates before May 24 2018 have been extrapolated")
 		message.channel.send(weekChart);
 	}
